@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		522E6BFD308FC12300D0F999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 522E6BE7308FC12200D0F999 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 522E6BEE308FC12200D0F999;
+			remoteInfo = kader;
+		};
+		522E6C07308FC12300D0F999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 522E6BE7308FC12200D0F999 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 522E6BEE308FC12200D0F999;
+			remoteInfo = kader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		522E6BEF308FC12200D0F999 /* kader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		522E6BFC308FC12300D0F999 /* kaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		522E6C06308FC12300D0F999 /* kaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		522E6BF1308FC12200D0F999 /* kader */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = kader;
+			sourceTree = "<group>";
+		};
+		522E6BFF308FC12300D0F999 /* kaderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = kaderTests;
+			sourceTree = "<group>";
+		};
+		522E6C09308FC12300D0F999 /* kaderUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = kaderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		522E6BEC308FC12200D0F999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		522E6BF9308FC12300D0F999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		522E6C03308FC12300D0F999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		522E6BE6308FC12200D0F999 = {
+			isa = PBXGroup;
+			children = (
+				522E6BF1308FC12200D0F999 /* kader */,
+				522E6BFF308FC12300D0F999 /* kaderTests */,
+				522E6C09308FC12300D0F999 /* kaderUITests */,
+				522E6BF0308FC12200D0F999 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		522E6BF0308FC12200D0F999 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				522E6BEF308FC12200D0F999 /* kader.app */,
+				522E6BFC308FC12300D0F999 /* kaderTests.xctest */,
+				522E6C06308FC12300D0F999 /* kaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		522E6BEE308FC12200D0F999 /* kader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522E6C0E308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kader" */;
+			buildPhases = (
+				522E6BEB308FC12200D0F999 /* Sources */,
+				522E6BEC308FC12200D0F999 /* Frameworks */,
+				522E6BED308FC12200D0F999 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				522E6BF1308FC12200D0F999 /* kader */,
+			);
+			name = kader;
+			productName = kader;
+			productReference = 522E6BEF308FC12200D0F999 /* kader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		522E6BFB308FC12300D0F999 /* kaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522E6C11308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kaderTests" */;
+			buildPhases = (
+				522E6BF8308FC12300D0F999 /* Sources */,
+				522E6BF9308FC12300D0F999 /* Frameworks */,
+				522E6BFA308FC12300D0F999 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				522E6BFE308FC12300D0F999 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				522E6BFF308FC12300D0F999 /* kaderTests */,
+			);
+			name = kaderTests;
+			productName = kaderTests;
+			productReference = 522E6BFC308FC12300D0F999 /* kaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		522E6C05308FC12300D0F999 /* kaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522E6C14308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kaderUITests" */;
+			buildPhases = (
+				522E6C02308FC12300D0F999 /* Sources */,
+				522E6C03308FC12300D0F999 /* Frameworks */,
+				522E6C04308FC12300D0F999 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				522E6C08308FC12300D0F999 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				522E6C09308FC12300D0F999 /* kaderUITests */,
+			);
+			name = kaderUITests;
+			productName = kaderUITests;
+			productReference = 522E6C06308FC12300D0F999 /* kaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		522E6BE7308FC12200D0F999 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2710;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					522E6BEE308FC12200D0F999 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					522E6BFB308FC12300D0F999 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 522E6BEE308FC12200D0F999;
+					};
+					522E6C05308FC12300D0F999 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 522E6BEE308FC12200D0F999;
+					};
+				};
+			};
+			buildConfigurationList = 522E6BEA308FC12200D0F999 /* Build configuration list for PBXProject "kader" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 522E6BE6308FC12200D0F999;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 522E6BF0308FC12200D0F999 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				522E6BEE308FC12200D0F999 /* kader */,
+				522E6BFB308FC12300D0F999 /* kaderTests */,
+				522E6C05308FC12300D0F999 /* kaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		522E6BED308FC12200D0F999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		522E6BFA308FC12300D0F999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		522E6C04308FC12300D0F999 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		522E6BEB308FC12200D0F999 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		522E6BF8308FC12300D0F999 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		522E6C02308FC12300D0F999 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		522E6BFE308FC12300D0F999 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 522E6BEE308FC12200D0F999 /* kader */;
+			targetProxy = 522E6BFD308FC12300D0F999 /* PBXContainerItemProxy */;
+		};
+		522E6C08308FC12300D0F999 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 522E6BEE308FC12200D0F999 /* kader */;
+			targetProxy = 522E6C07308FC12300D0F999 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		522E6C0C308FC12300D0F999 /* Debug configuration for PBXProject "kader" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		522E6C0D308FC12300D0F999 /* Release configuration for PBXProject "kader" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		522E6C0F308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kader" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		522E6C10308FC12300D0F999 /* Release configuration for PBXNativeTarget "kader" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		522E6C12308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kaderTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/kader";
+			};
+			name = Debug;
+		};
+		522E6C13308FC12300D0F999 /* Release configuration for PBXNativeTarget "kaderTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/kader";
+			};
+			name = Release;
+		};
+		522E6C15308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kaderUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = kader;
+			};
+			name = Debug;
+		};
+		522E6C16308FC12300D0F999 /* Release configuration for PBXNativeTarget "kaderUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nl.codebros.kaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = kader;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		522E6BEA308FC12200D0F999 /* Build configuration list for PBXProject "kader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522E6C0C308FC12300D0F999 /* Debug configuration for PBXProject "kader" */,
+				522E6C0D308FC12300D0F999 /* Release configuration for PBXProject "kader" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		522E6C0E308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522E6C0F308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kader" */,
+				522E6C10308FC12300D0F999 /* Release configuration for PBXNativeTarget "kader" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		522E6C11308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522E6C12308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kaderTests" */,
+				522E6C13308FC12300D0F999 /* Release configuration for PBXNativeTarget "kaderTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		522E6C14308FC12300D0F999 /* Build configuration list for PBXNativeTarget "kaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522E6C15308FC12300D0F999 /* Debug configuration for PBXNativeTarget "kaderUITests" */,
+				522E6C16308FC12300D0F999 /* Release configuration for PBXNativeTarget "kaderUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 522E6BE7308FC12200D0F999 /* Project object */;
+	validationLevel = 1;
+}
