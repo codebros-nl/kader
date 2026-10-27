@@ -108,7 +108,9 @@ final class SnapDetector {
     private func updateSnap(at location: CGPoint) {
         guard case let .dragging(window, originalFrame, currentSnap) = state else { return }
 
-        let snap = SnapArea.snap(at: location, in: windowManager.currentScreens())
+        let snap = SnapArea.snap(at: location, in: windowManager.currentScreens()) {
+            SnapBehavior.current(for: $0)
+        }
         guard snap != currentSnap else { return }
         state = .dragging(window: window, originalFrame: originalFrame, snap: snap)
 

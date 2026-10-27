@@ -2,10 +2,8 @@ import CoreGraphics
 
 /// Pure logica: welke actie hoort bij de muispositie tijdens het slepen van een venster.
 ///
-/// - Linker- en rechterrand: helften.
-/// - Bovenrand: maximaliseren.
-/// - Onderrand: derden, afhankelijk van de horizontale positie.
-/// - Hoeken: kwarten.
+/// Eerst wordt de plek bepaald (rand of hoek), daarna via het ingestelde `SnapBehavior` de actie.
+/// Standaard: helften links en rechts, maximaliseren boven, derden onder en kwarten in de hoeken.
 ///
 /// Randen die aan een ander scherm grenzen tellen niet mee, anders zou elke overgang naar
 /// een tweede monitor een snap opleveren. Alles in Accessibility-coördinaten.
@@ -20,7 +18,12 @@ nonisolated enum SnapArea {
     /// Lengte van de hoekzone langs elke rand.
     static let cornerSize: CGFloat = 40
 
-    static func snap(at point: CGPoint, in screens: [ScreenGeometry.Screen]) -> Snap? {
+    /// - Parameter behavior: Gedrag per plek; standaard de ingebouwde indeling.
+    static func snap(
+        at point: CGPoint,
+        in screens: [ScreenGeometry.Screen],
+        behavior: (SnapPosition) -> SnapBehavior = \.defaultBehavior
+    ) -> Snap? {
         guard let screen = screens.first(where: { containsInclusive($0.frame, point) }) else {
             return nil
         }
@@ -42,26 +45,39 @@ nonisolated enum SnapArea {
         let inTopBand = point.y <= frame.minY + cornerSize
         let inBottomBand = point.y >= frame.maxY - cornerSize
 
-        let action: WindowAction
+        let position: SnapPosition
         if (nearLeft && inTopBand) || (nearTop && inLeftBand) {
-            action = .topLeft
+            position = .topLeft
         } else if (nearRight && inTopBand) || (nearTop && inRightBand) {
-            action = .topRight
+            position = .topRight
         } else if (nearLeft && inBottomBand) || (nearBottom && inLeftBand) {
-            action = .bottomLeft
+            position = .bottomLeft
         } else if (nearRight && inBottomBand) || (nearBottom && inRightBand) {
-            action = .bottomRight
+            position = .bottomRight
         } else if nearLeft {
-            action = .leftHalf
+            position = .left
         } else if nearRight {
-            action = .rightHalf
+            position = .right
         } else if nearTop {
-            action = .maximize
+            position = .top
         } else if nearBottom {
-            let relativeX = (point.x - frame.minX) / frame.width
-            action = relativeX < 1.0 / 3 ? .firstThird : relativeX < 2.0 / 3 ? .centerThird : .lastThird
+            position = .bottom
         } else {
             return nil
+        }
+
+        let action: WindowAction
+        switch behavior(position) {
+        case .none:
+            return nil
+        case .action(let configured):
+            action = configured
+        case .thirds:
+            // Langs de boven- en onderrand op x, langs de zijkanten op y.
+            let relative = position.isHorizontalEdge
+                ? (point.x - frame.minX) / frame.width
+                : (point.y - frame.minY) / frame.height
+            action = relative < 1.0 / 3 ? .firstThird : relative < 2.0 / 3 ? .centerThird : .lastThird
         }
         return Snap(action: action, screen: screen)
     }
