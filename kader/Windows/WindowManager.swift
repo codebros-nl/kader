@@ -82,6 +82,14 @@ final class WindowManager {
         cycle.record(action, step: step, window: window, resultingFrame: resultingFrame)
     }
 
+    /// Zet een venster op een vrij gekozen frame, bijvoorbeeld een eigen zone.
+    /// Herstellen gaat daarna terug naar `originalFrame`.
+    func place(_ window: AXUIElement, at frame: CGRect, originalFrame: CGRect) {
+        history.willMove(window, from: originalFrame)
+        setFrame(frame, of: window)
+        history.didMove(window, to: self.frame(of: window) ?? frame)
+    }
+
     var windowGap: CGFloat {
         max(0, UserDefaults.standard.double(forKey: SettingsKey.windowGap))
     }

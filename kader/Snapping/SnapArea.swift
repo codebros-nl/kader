@@ -24,7 +24,7 @@ nonisolated enum SnapArea {
         in screens: [ScreenGeometry.Screen],
         behavior: (SnapPosition) -> SnapBehavior = \.defaultBehavior
     ) -> Snap? {
-        guard let screen = screens.first(where: { containsInclusive($0.frame, point) }) else {
+        guard let screen = ScreenGeometry.screen(containing: point, in: screens) else {
             return nil
         }
         let frame = screen.frame
@@ -82,9 +82,7 @@ nonisolated enum SnapArea {
         return Snap(action: action, screen: screen)
     }
 
-    /// Zoals `CGRect.contains`, maar inclusief de rechter- en onderrand:
-    /// de cursor kan precies op `maxX` of `maxY` staan.
     private static func containsInclusive(_ rect: CGRect, _ point: CGPoint) -> Bool {
-        point.x >= rect.minX && point.x <= rect.maxX && point.y >= rect.minY && point.y <= rect.maxY
+        ScreenGeometry.containsInclusive(rect, point)
     }
 }

@@ -66,6 +66,16 @@ nonisolated enum ScreenGeometry {
         }
     }
 
+    /// Het scherm onder een punt, zoals de cursor. Inclusief de rechter- en onderrand,
+    /// omdat de cursor precies op `maxX` of `maxY` kan staan.
+    static func screen(containing point: CGPoint, in screens: [Screen]) -> Screen? {
+        screens.first { containsInclusive($0.frame, point) }
+    }
+
+    static func containsInclusive(_ rect: CGRect, _ point: CGPoint) -> Bool {
+        point.x >= rect.minX && point.x <= rect.maxX && point.y >= rect.minY && point.y <= rect.maxY
+    }
+
     /// Het scherm `offset` plaatsen verder dan `current`, met schermen gesorteerd van links naar rechts
     /// (bij gelijke x van boven naar onder). Loopt rond aan het eind. Nil bij minder dan twee schermen.
     static func screen(offsetBy offset: Int, from current: Screen, in screens: [Screen]) -> Screen? {
@@ -161,7 +171,7 @@ nonisolated enum ScreenGeometry {
 
     /// Zet een fractie om naar een frame. Randen aan de schermkant krijgen de volle marge,
     /// randen tussen twee vensters elk de halve, zodat de ruimte tussen vensters ook `gap` is.
-    private static func frame(for unit: CGRect, in area: CGRect, gap: CGFloat) -> CGRect {
+    static func frame(for unit: CGRect, in area: CGRect, gap: CGFloat) -> CGRect {
         let tolerance = 0.001
         let minXInset = unit.minX < tolerance ? gap : gap / 2
         let maxXInset = unit.maxX > 1 - tolerance ? gap : gap / 2

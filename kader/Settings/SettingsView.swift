@@ -12,6 +12,9 @@ struct SettingsView: View {
             DragSettingsView()
                 .tabItem { Label("Slepen", systemImage: "hand.draw") }
 
+            ZoneSettingsView()
+                .tabItem { Label("Zones", systemImage: "square.grid.3x2") }
+
             ShortcutSettingsView()
                 .tabItem { Label("Sneltoetsen", systemImage: "keyboard") }
 
