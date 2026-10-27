@@ -4,10 +4,14 @@ struct MenuContent: View {
     let permission: AccessibilityPermission
     let perform: (WindowAction) -> Void
 
+    @Environment(\.openSettings) private var openSettings
+
     private static let sections: [[WindowAction]] = [
         [.leftHalf, .rightHalf, .topHalf, .bottomHalf],
         [.topLeft, .topRight, .bottomLeft, .bottomRight],
-        [.maximize, .center],
+        [.firstThird, .centerThird, .lastThird, .firstTwoThirds, .lastTwoThirds],
+        [.maximize, .center, .restore],
+        [.nextScreen, .previousScreen],
     ]
 
     var body: some View {
@@ -35,6 +39,13 @@ struct MenuContent: View {
         }
 
         Divider()
+
+        Button("Instellingen…") {
+            // Kader heeft geen Dock-icoon, dus zonder activeren opent het venster achter andere apps.
+            NSApplication.shared.activate()
+            openSettings()
+        }
+        .keyboardShortcut(",")
 
         Button("Stop Kader") {
             NSApplication.shared.terminate(nil)

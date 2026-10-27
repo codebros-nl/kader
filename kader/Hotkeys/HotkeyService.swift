@@ -28,7 +28,7 @@ final class HotkeyService {
             var ref: EventHotKeyRef?
             let status = RegisterEventHotKey(
                 hotkey.keyCode,
-                Hotkey.carbonModifiers,
+                hotkey.carbonModifiers,
                 EventHotKeyID(signature: hotkeySignature, id: id),
                 GetApplicationEventTarget(),
                 0,

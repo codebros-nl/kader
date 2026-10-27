@@ -9,5 +9,9 @@ struct KaderApp: App {
             MenuContent(permission: appDelegate.permission, perform: appDelegate.perform)
         }
         .menuBarExtraStyle(.menu)
+
+        Settings {
+            SettingsView()
+        }
     }
 }

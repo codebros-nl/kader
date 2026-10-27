@@ -7,6 +7,8 @@ import os
 @MainActor
 final class WindowManager {
     private let logger = Logger(subsystem: "nl.codebros.kader", category: "WindowManager")
+    private var cycle = ActionCycle<AXUIElement>()
+    private var history = FrameHistory<AXUIElement>()
 
     func perform(_ action: WindowAction) {
         guard let window = focusedWindow() else {
@@ -17,17 +19,53 @@ final class WindowManager {
             logger.info("Frame van het gefocuste venster is niet leesbaar")
             return
         }
-        guard let screen = ScreenGeometry.screen(for: currentFrame, in: currentScreens()) else {
+        let screens = currentScreens()
+        guard let screen = ScreenGeometry.screen(for: currentFrame, in: screens) else {
             logger.error("Geen scherm gevonden")
             return
         }
 
-        let target = ScreenGeometry.targetFrame(
-            for: action,
-            currentFrame: currentFrame,
-            visibleFrame: screen.visibleFrame
-        )
+        var step = 0
+        let target: CGRect?
+        switch action {
+        case .restore:
+            target = history.takeRestoreFrame(for: window)
+        case .nextScreen, .previousScreen:
+            let offset = action == .nextScreen ? 1 : -1
+            target = ScreenGeometry.screen(offsetBy: offset, from: screen, in: screens).map {
+                ScreenGeometry.frame(currentFrame, movedFrom: screen.visibleFrame, to: $0.visibleFrame)
+            }
+        default:
+            step = cycle.step(for: action, window: window, currentFrame: currentFrame)
+            target = ScreenGeometry.targetFrame(
+                for: action,
+                step: step,
+                currentFrame: currentFrame,
+                visibleFrame: screen.visibleFrame,
+                gap: windowGap
+            )
+        }
+
+        guard let target else {
+            logger.info("Niets te doen voor \(action.rawValue, privacy: .public)")
+            return
+        }
+
+        if action != .restore {
+            history.willMove(window, from: currentFrame)
+        }
         setFrame(target, of: window)
+
+        // Het venster kan het doelframe hebben bijgesteld (minimale grootte), dus terug uitlezen.
+        let resultingFrame = frame(of: window) ?? target
+        if action != .restore {
+            history.didMove(window, to: resultingFrame)
+        }
+        cycle.record(action, step: step, window: window, resultingFrame: resultingFrame)
+    }
+
+    private var windowGap: CGFloat {
+        max(0, UserDefaults.standard.double(forKey: SettingsKey.windowGap))
     }
 
     // MARK: - Venster ophalen

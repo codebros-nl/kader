@@ -26,9 +26,60 @@ struct ScreenGeometryTests {
         #expect(ScreenGeometry.targetFrame(for: action, currentFrame: window, visibleFrame: area) == expected)
     }
 
-    @Test func everyActionIsCovered() {
-        // Houdt de parameterlijst hierboven in sync met nieuwe acties.
-        #expect(WindowAction.allCases.count == 10)
+    @Test(arguments: [
+        (WindowAction.firstThird, CGRect(x: 0, y: 25, width: 480, height: 800)),
+        (.centerThird, CGRect(x: 480, y: 25, width: 480, height: 800)),
+        (.lastThird, CGRect(x: 960, y: 25, width: 480, height: 800)),
+        (.firstTwoThirds, CGRect(x: 0, y: 25, width: 960, height: 800)),
+        (.lastTwoThirds, CGRect(x: 480, y: 25, width: 960, height: 800)),
+    ])
+    func thirdsOnLandscapeScreen(action: WindowAction, expected: CGRect) {
+        #expect(ScreenGeometry.targetFrame(for: action, currentFrame: window, visibleFrame: area) == expected)
+    }
+
+    @Test func thirdsOnPortraitScreenAreRows() {
+        let portrait = CGRect(x: 0, y: 0, width: 1080, height: 1920)
+        #expect(
+            ScreenGeometry.targetFrame(for: .firstThird, currentFrame: window, visibleFrame: portrait)
+                == CGRect(x: 0, y: 0, width: 1080, height: 640)
+        )
+        #expect(
+            ScreenGeometry.targetFrame(for: .lastTwoThirds, currentFrame: window, visibleFrame: portrait)
+                == CGRect(x: 0, y: 640, width: 1080, height: 1280)
+        )
+    }
+
+    @Test(arguments: [
+        (WindowAction.leftHalf, 1, CGRect(x: 0, y: 25, width: 480, height: 800)),
+        (.leftHalf, 2, CGRect(x: 0, y: 25, width: 960, height: 800)),
+        (.leftHalf, 3, CGRect(x: 0, y: 25, width: 720, height: 800)),
+        (.rightHalf, 1, CGRect(x: 960, y: 25, width: 480, height: 800)),
+        (.rightHalf, 2, CGRect(x: 480, y: 25, width: 960, height: 800)),
+        // Een derde van 800 is geen heel getal: randen worden afgerond.
+        (.topHalf, 1, CGRect(x: 0, y: 25, width: 1440, height: 267)),
+        (.bottomHalf, 2, CGRect(x: 0, y: 292, width: 1440, height: 533)),
+    ])
+    func cycleSteps(action: WindowAction, step: Int, expected: CGRect) {
+        #expect(
+            ScreenGeometry.targetFrame(for: action, step: step, currentFrame: window, visibleFrame: area) == expected
+        )
+    }
+
+    @Test(arguments: [
+        (WindowAction.leftHalf, CGRect(x: 10, y: 35, width: 705, height: 780)),
+        (.rightHalf, CGRect(x: 725, y: 35, width: 705, height: 780)),
+        (.bottomRight, CGRect(x: 725, y: 430, width: 705, height: 385)),
+        (.maximize, CGRect(x: 10, y: 35, width: 1420, height: 780)),
+    ])
+    func gapAppliesToScreenEdgesAndBetweenWindows(action: WindowAction, expected: CGRect) {
+        #expect(
+            ScreenGeometry.targetFrame(for: action, currentFrame: window, visibleFrame: area, gap: 10) == expected
+        )
+    }
+
+    @Test(arguments: [WindowAction.nextScreen, .previousScreen, .restore])
+    func actionsWithoutLayoutHaveNoTargetFrame(action: WindowAction) {
+        #expect(ScreenGeometry.targetFrame(for: action, currentFrame: window, visibleFrame: area) == nil)
     }
 
     @Test func actionsOnOffsetScreen() {
@@ -127,5 +178,38 @@ struct ScreenGeometryTests {
         let offscreen = CGRect(x: 4000, y: 100, width: 400, height: 300)
         #expect(ScreenGeometry.screen(for: offscreen, in: screens) == screens[1])
         #expect(ScreenGeometry.screen(for: offscreen, in: []) == nil)
+    }
+
+    // MARK: - Volgend en vorig scherm
+
+    @Test func nextAndPreviousScreenGoLeftToRightAndWrap() {
+        let left = ScreenGeometry.Screen(frame: CGRect(x: -1920, y: -180, width: 1920, height: 1080), visibleFrame: .zero)
+        // Bewust niet op volgorde: NSScreen.screens begint altijd met het hoofdscherm.
+        let all = [screens[0], screens[1], left]
+
+        #expect(ScreenGeometry.screen(offsetBy: 1, from: screens[0], in: all) == screens[1])
+        #expect(ScreenGeometry.screen(offsetBy: 1, from: screens[1], in: all) == left)
+        #expect(ScreenGeometry.screen(offsetBy: -1, from: screens[0], in: all) == left)
+        #expect(ScreenGeometry.screen(offsetBy: -1, from: left, in: all) == screens[1])
+        #expect(ScreenGeometry.screen(offsetBy: 1, from: screens[0], in: [screens[0]]) == nil)
+    }
+
+    @Test func movingToAnotherScreenKeepsRelativePositionAndSize() {
+        let leftHalf = CGRect(x: 0, y: 25, width: 720, height: 800)
+        let destination = CGRect(x: 1440, y: -180, width: 1920, height: 1080)
+        #expect(
+            ScreenGeometry.frame(leftHalf, movedFrom: area, to: destination)
+                == CGRect(x: 1440, y: -180, width: 960, height: 1080)
+        )
+    }
+
+    @Test func movingToAnotherScreenStaysInsideDestination() {
+        let source = CGRect(x: 0, y: 0, width: 1000, height: 1000)
+        let destination = CGRect(x: 0, y: 0, width: 500, height: 500)
+        let overhanging = CGRect(x: 900, y: 900, width: 200, height: 200)
+        #expect(
+            ScreenGeometry.frame(overhanging, movedFrom: source, to: destination)
+                == CGRect(x: 400, y: 400, width: 100, height: 100)
+        )
     }
 }
