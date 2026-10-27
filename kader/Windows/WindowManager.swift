@@ -133,6 +133,13 @@ final class WindowManager {
         return unsafeDowncast(value, to: AXUIElement.self)
     }
 
+    /// Bundle-ID van de app waar een venster bij hoort.
+    func bundleIdentifier(of window: AXUIElement) -> String? {
+        var pid: pid_t = 0
+        guard AXUIElementGetPid(window, &pid) == .success else { return nil }
+        return NSRunningApplication(processIdentifier: pid)?.bundleIdentifier
+    }
+
     func currentScreens() -> [ScreenGeometry.Screen] {
         let cocoaScreens = NSScreen.screens.map {
             ScreenGeometry.Screen(frame: $0.frame, visibleFrame: $0.visibleFrame)

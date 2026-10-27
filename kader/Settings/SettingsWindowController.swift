@@ -5,7 +5,12 @@ import SwiftUI
 /// vanuit een menubalk-app zonder Dock-icoon.
 @MainActor
 final class SettingsWindowController {
+    private let excludedApps: ExcludedApps
     private var window: NSWindow?
+
+    init(excludedApps: ExcludedApps) {
+        self.excludedApps = excludedApps
+    }
 
     func show() {
         let window = self.window ?? makeWindow()
@@ -18,7 +23,7 @@ final class SettingsWindowController {
     }
 
     private func makeWindow() -> NSWindow {
-        let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView()))
+        let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(excludedApps: excludedApps)))
         window.title = "Kader-instellingen"
         window.styleMask = [.titled, .closable]
         // Hergebruiken na sluiten, zodat er nooit twee instellingenvensters zijn.

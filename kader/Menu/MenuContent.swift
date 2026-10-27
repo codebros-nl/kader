@@ -3,6 +3,8 @@ import SwiftUI
 
 struct MenuContent: View {
     let permission: AccessibilityPermission
+    let excludedApps: ExcludedApps
+    let frontmostApp: FrontmostApp
     let perform: (WindowAction) -> Void
     let openSettings: () -> Void
 
@@ -31,6 +33,13 @@ struct MenuContent: View {
         }
 
         Divider()
+
+        if let bundleIdentifier = frontmostApp.bundleIdentifier, let name = frontmostApp.name {
+            Toggle("Negeer \(name)", isOn: Binding(
+                get: { excludedApps.contains(bundleIdentifier) },
+                set: { excludedApps.setExcluded($0, bundleIdentifier: bundleIdentifier) }
+            ))
+        }
 
         Button("Instellingen…") {
             openSettings()
