@@ -1,3 +1,4 @@
+import KeyboardShortcuts
 import SwiftUI
 
 struct MenuContent: View {
@@ -5,14 +6,6 @@ struct MenuContent: View {
     let perform: (WindowAction) -> Void
 
     @Environment(\.openSettings) private var openSettings
-
-    private static let sections: [[WindowAction]] = [
-        [.leftHalf, .rightHalf, .topHalf, .bottomHalf],
-        [.topLeft, .topRight, .bottomLeft, .bottomRight],
-        [.firstThird, .centerThird, .lastThird, .firstTwoThirds, .lastTwoThirds],
-        [.maximize, .center, .restore],
-        [.nextScreen, .previousScreen],
-    ]
 
     var body: some View {
         if permission.isGranted {
@@ -27,13 +20,13 @@ struct MenuContent: View {
             }
         }
 
-        ForEach(Self.sections, id: \.self) { section in
+        ForEach(WindowAction.groups, id: \.self) { group in
             Divider()
-            ForEach(section) { action in
+            ForEach(group) { action in
                 Button(action.title) {
                     perform(action)
                 }
-                .keyboardShortcut(Hotkey.defaultShortcut(for: action))
+                .globalKeyboardShortcut(action.shortcutName)
                 .disabled(!permission.isGranted)
             }
         }

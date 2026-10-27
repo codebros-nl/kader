@@ -10,7 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        hotkeys.register(Hotkey.defaults)
+        hotkeys.registerAll()
     }
 
     /// Gedeeld startpunt voor sneltoetsen en het menu.

@@ -19,6 +19,15 @@ nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
     case previousScreen
     case restore
 
+    /// Indeling in groepen voor het menu en de instellingen.
+    static let groups: [[WindowAction]] = [
+        [.leftHalf, .rightHalf, .topHalf, .bottomHalf],
+        [.topLeft, .topRight, .bottomLeft, .bottomRight],
+        [.firstThird, .centerThird, .lastThird, .firstTwoThirds, .lastTwoThirds],
+        [.maximize, .center, .restore],
+        [.nextScreen, .previousScreen],
+    ]
+
     var id: String { rawValue }
 
     var title: String {
