@@ -7,10 +7,19 @@ import os
 @MainActor
 @Observable
 final class LaunchAtLogin {
-    private(set) var isEnabled = SMAppService.mainApp.status == .enabled
+    private(set) var status = SMAppService.mainApp.status
 
     @ObservationIgnored
     private let logger = Logger(subsystem: "nl.codebros.kader", category: "LaunchAtLogin")
+
+    /// Aan, ook als macOS nog wacht op goedkeuring in Inlogonderdelen.
+    var isEnabled: Bool {
+        status == .enabled || status == .requiresApproval
+    }
+
+    var needsApproval: Bool {
+        status == .requiresApproval
+    }
 
     func setEnabled(_ enabled: Bool) {
         do {
@@ -26,6 +35,10 @@ final class LaunchAtLogin {
     }
 
     func refresh() {
-        isEnabled = SMAppService.mainApp.status == .enabled
+        status = SMAppService.mainApp.status
+    }
+
+    func openLoginItemsSettings() {
+        SMAppService.openSystemSettingsLoginItems()
     }
 }
