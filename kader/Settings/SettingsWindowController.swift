@@ -25,9 +25,16 @@ final class SettingsWindowController {
     }
 
     private func makeWindow() -> NSWindow {
-        let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(excludedApps: excludedApps, layouts: layouts)))
+        let hostingController = NSHostingController(rootView: SettingsView(excludedApps: excludedApps, layouts: layouts))
+        // Titel en werkbalk komen uit SwiftUI (navigationTitle per onderdeel).
+        hostingController.sceneBridgingOptions = [.title, .toolbars]
+
+        let window = NSWindow(contentViewController: hostingController)
         window.title = "Kader-instellingen"
-        window.styleMask = [.titled, .closable]
+        // Inhoud onder de titelbalk door, zodat de zijbalk tot bovenaan loopt zoals in Systeeminstellingen.
+        window.styleMask = [.titled, .closable, .fullSizeContentView]
+        window.toolbarStyle = .unified
+        window.titlebarAppearsTransparent = true
         // Hergebruiken na sluiten, zodat er nooit twee instellingenvensters zijn.
         window.isReleasedWhenClosed = false
         window.center()
