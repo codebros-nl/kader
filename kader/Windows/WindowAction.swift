@@ -18,6 +18,9 @@ nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
     case nextScreen
     case previousScreen
     case restore
+    case stashLeft
+    case stashRight
+    case unstashAll
 
     /// Indeling in groepen voor het menu en de instellingen.
     static let groups: [[WindowAction]] = [
@@ -26,6 +29,7 @@ nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
         [.firstThird, .centerThird, .lastThird, .firstTwoThirds, .lastTwoThirds],
         [.maximize, .center, .restore],
         [.nextScreen, .previousScreen],
+        [.stashLeft, .stashRight, .unstashAll],
     ]
 
     var id: String { rawValue }
@@ -50,6 +54,9 @@ nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
         case .nextScreen: "Volgend scherm"
         case .previousScreen: "Vorig scherm"
         case .restore: "Herstellen"
+        case .stashLeft: "Parkeer links"
+        case .stashRight: "Parkeer rechts"
+        case .unstashAll: "Geparkeerde vensters terugzetten"
         }
     }
 

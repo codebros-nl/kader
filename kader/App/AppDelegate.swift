@@ -13,6 +13,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         excludedApps: excludedApps,
         permission: permission
     )
+    private lazy var stash = StashManager(windowManager: windowManager)
     private lazy var settingsWindow = SettingsWindowController(excludedApps: excludedApps, layouts: layouts)
     private lazy var hotkeys = HotkeyService { [weak self] action in
         self?.perform(action)
@@ -34,6 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hotkeys.registerAll()
         snapDetector.start()
         layouts.startAutoApply()
+        stash.start()
 
         frontmostApp.onChange = { [weak self] in self?.updateHotkeyAvailability() }
         excludedApps.onChange = { [weak self] in self?.updateHotkeyAvailability() }
@@ -46,7 +48,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             permission.request()
             return
         }
-        windowManager.perform(action)
+        switch action {
+        case .stashLeft: stash.toggleStash(.left)
+        case .stashRight: stash.toggleStash(.right)
+        case .unstashAll: stash.unstashAll()
+        default: windowManager.perform(action)
+        }
+    }
+
+    /// Geparkeerde vensters zouden anders half buiten beeld blijven staan.
+    func applicationWillTerminate(_ notification: Notification) {
+        stash.unstashAll()
     }
 
     func openSettings() {
