@@ -11,7 +11,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         store: LayoutStore(),
         windowManager: windowManager,
         excludedApps: excludedApps,
-        permission: permission
+        permission: permission,
+        stashedOriginalFrame: { [weak self] window in self?.stash.originalFrame(ofStashed: window) }
     )
     private lazy var stash = StashManager(windowManager: windowManager)
     private lazy var settingsWindow = SettingsWindowController(excludedApps: excludedApps, layouts: layouts)
@@ -44,7 +45,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Gedeeld startpunt voor sneltoetsen en het menu.
     func perform(_ action: WindowAction) {
-        guard permission.isGranted else {
+        // Opnieuw uitlezen: de toestemming kan inmiddels zijn ingetrokken.
+        guard permission.refresh() else {
             permission.request()
             return
         }

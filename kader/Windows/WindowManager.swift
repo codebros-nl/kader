@@ -11,6 +11,14 @@ final class WindowManager {
     private var history = FrameHistory<AXUIElement>()
     private let systemWideElement = AXUIElementCreateSystemWide()
 
+    /// Maximale wachttijd per AX-aanroep. Standaard is dat ongeveer 6 seconden, waardoor een
+    /// hangende app Kader zou bevriezen. Ingesteld op het systeembrede element geldt het voor alle aanroepen.
+    private static let messagingTimeout: Float = 0.5
+
+    init() {
+        AXUIElementSetMessagingTimeout(systemWideElement, Self.messagingTimeout)
+    }
+
     /// Voert een actie uit op het gefocuste venster (sneltoetsen en menu).
     func perform(_ action: WindowAction) {
         guard let window = focusedWindow() else {

@@ -6,13 +6,13 @@ import os
 /// Met de cursor tegen de rand schuift een geparkeerd venster uit; weg met de cursor schuift het terug.
 @MainActor
 final class StashManager {
-    private struct StashedWindow {
+    fileprivate struct StashedWindow {
         let window: AXUIElement
         let edge: StashEdge
-        let screen: ScreenGeometry.Screen
+        var screen: ScreenGeometry.Screen
         /// Frame van vóór het parkeren, voor terugzetten.
         let originalFrame: CGRect
-        let stashedFrame: CGRect
+        var stashedFrame: CGRect
         /// Bijgewerkt na uitschuiven naar het frame dat het venster werkelijk kreeg.
         var revealedFrame: CGRect
         var isRevealed = false
@@ -22,6 +22,7 @@ final class StashManager {
     private let logger = Logger(subsystem: "nl.codebros.kader", category: "StashManager")
     private var stashed: [StashedWindow] = []
     private var monitor: Any?
+    private var screenObserver: NSObjectProtocol?
 
     init(windowManager: WindowManager) {
         self.windowManager = windowManager
@@ -34,6 +35,21 @@ final class StashManager {
                 self?.cursorMoved()
             }
         }
+        screenObserver = NotificationCenter.default.addObserver(
+            forName: NSApplication.didChangeScreenParametersNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.restashAll()
+            }
+        }
+    }
+
+    /// Het frame van vóór het parkeren, of nil als het venster niet geparkeerd is.
+    /// Layouts gebruiken dit, zodat ze nooit een plek buiten beeld vastleggen.
+    func originalFrame(ofStashed window: AXUIElement) -> CGRect? {
+        stashed.first { CFEqual($0.window, window) }?.originalFrame
     }
 
     /// Parkeert het gefocuste venster. Is het al geparkeerd, dan wordt het teruggezet.
@@ -55,16 +71,32 @@ final class StashManager {
             return
         }
 
-        let entry = StashedWindow(
+        var entry = StashedWindow(
             window: window,
             edge: edge,
             screen: screen,
             originalFrame: frame,
-            stashedFrame: StashGeometry.stashedFrame(for: frame, edge: edge, on: screen),
-            revealedFrame: StashGeometry.revealedFrame(for: frame, edge: edge, on: screen)
+            stashedFrame: .zero,
+            revealedFrame: .zero
         )
+        entry.place(on: screen)
         windowManager.setFrame(entry.stashedFrame, of: window)
         stashed.append(entry)
+    }
+
+    /// Na een monitorwissel opnieuw parkeren aan de buitenrand van de huidige schermen;
+    /// anders blijft een venster op de plek van een losgekoppelde monitor staan.
+    private func restashAll() {
+        let screens = windowManager.currentScreens()
+        for index in stashed.indices.reversed() {
+            guard let screen = StashGeometry.screen(for: stashed[index].edge, in: screens) else {
+                unstash(at: index)
+                continue
+            }
+            stashed[index].place(on: screen)
+            stashed[index].isRevealed = false
+            windowManager.setFrame(stashed[index].stashedFrame, of: stashed[index].window)
+        }
     }
 
     /// Zet alle geparkeerde vensters terug op hun oude plek, ook bij het afsluiten van Kader.
@@ -76,7 +108,12 @@ final class StashManager {
 
     private func unstash(at index: Int) {
         let entry = stashed.remove(at: index)
-        windowManager.setFrame(entry.originalFrame, of: entry.window)
+        let frame = StashGeometry.unstashFrame(
+            original: entry.originalFrame,
+            fallback: entry.revealedFrame,
+            screens: windowManager.currentScreens()
+        )
+        windowManager.setFrame(frame, of: entry.window)
     }
 
     // MARK: - Uitschuiven en terugschuiven
@@ -131,5 +168,14 @@ final class StashManager {
         }
         windowManager.setFrame(entry.stashedFrame, of: entry.window)
         stashed[index].isRevealed = false
+    }
+}
+
+private extension StashManager.StashedWindow {
+    /// Berekent de geparkeerde en uitgeschoven plek op een scherm, op basis van het oorspronkelijke formaat.
+    mutating func place(on newScreen: ScreenGeometry.Screen) {
+        screen = newScreen
+        stashedFrame = StashGeometry.stashedFrame(for: originalFrame, edge: edge, on: newScreen)
+        revealedFrame = StashGeometry.revealedFrame(for: originalFrame, edge: edge, on: newScreen)
     }
 }

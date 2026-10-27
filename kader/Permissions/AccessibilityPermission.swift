@@ -13,9 +13,7 @@ final class AccessibilityPermission {
     private var pollTask: Task<Void, Never>?
 
     init() {
-        if !isGranted {
-            startPolling()
-        }
+        startPolling()
     }
 
     /// Toont de systeemprompt van macOS die naar Systeeminstellingen verwijst.
@@ -23,10 +21,6 @@ final class AccessibilityPermission {
         // String-literal i.p.v. kAXTrustedCheckOptionPrompt voorkomt Swift 6 concurrency-fouten.
         let options = ["AXTrustedCheckOptionPrompt": true] as CFDictionary
         isGranted = AXIsProcessTrustedWithOptions(options)
-
-        if !isGranted {
-            startPolling()
-        }
     }
 
     func openSystemSettings() {
@@ -36,25 +30,28 @@ final class AccessibilityPermission {
         NSWorkspace.shared.open(url)
     }
 
-    /// macOS stuurt geen notificatie bij het verlenen van toestemming, dus we pollen elke seconde.
+    /// Leest de toestemming opnieuw uit, bijvoorbeeld vlak voor een actie.
+    @discardableResult
+    func refresh() -> Bool {
+        let granted = AXIsProcessTrusted()
+        if granted != isGranted {
+            isGranted = granted
+        }
+        return granted
+    }
+
+    /// macOS stuurt geen notificatie bij het verlenen of intrekken van toestemming, dus we pollen:
+    /// elke seconde zolang die ontbreekt, daarna elke vijf seconden om intrekken op te merken.
     private func startPolling() {
         guard pollTask == nil else { return }
 
         pollTask = Task { [weak self] in
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(1))
+                let interval: Duration = self?.isGranted == true ? .seconds(5) : .seconds(1)
+                try? await Task.sleep(for: interval)
                 guard let self else { return }
-                if self.refresh() { return }
+                refresh()
             }
         }
-    }
-
-    @discardableResult
-    private func refresh() -> Bool {
-        isGranted = AXIsProcessTrusted()
-        if isGranted {
-            pollTask = nil
-        }
-        return isGranted
     }
 }
