@@ -7,7 +7,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let excludedApps = ExcludedApps()
     let frontmostApp = FrontmostApp()
     private let windowManager = WindowManager()
-    private lazy var settingsWindow = SettingsWindowController(excludedApps: excludedApps)
+    private(set) lazy var layouts = LayoutService(
+        store: LayoutStore(),
+        windowManager: windowManager,
+        excludedApps: excludedApps,
+        permission: permission
+    )
+    private lazy var settingsWindow = SettingsWindowController(excludedApps: excludedApps, layouts: layouts)
     private lazy var hotkeys = HotkeyService { [weak self] action in
         self?.perform(action)
     }
@@ -27,6 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: [SettingsKey.dragToSnap: true])
         hotkeys.registerAll()
         snapDetector.start()
+        layouts.startAutoApply()
 
         frontmostApp.onChange = { [weak self] in self?.updateHotkeyAvailability() }
         excludedApps.onChange = { [weak self] in self?.updateHotkeyAvailability() }

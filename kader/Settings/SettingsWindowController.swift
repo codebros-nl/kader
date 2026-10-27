@@ -6,10 +6,12 @@ import SwiftUI
 @MainActor
 final class SettingsWindowController {
     private let excludedApps: ExcludedApps
+    private let layouts: LayoutService
     private var window: NSWindow?
 
-    init(excludedApps: ExcludedApps) {
+    init(excludedApps: ExcludedApps, layouts: LayoutService) {
         self.excludedApps = excludedApps
+        self.layouts = layouts
     }
 
     func show() {
@@ -23,7 +25,7 @@ final class SettingsWindowController {
     }
 
     private func makeWindow() -> NSWindow {
-        let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(excludedApps: excludedApps)))
+        let window = NSWindow(contentViewController: NSHostingController(rootView: SettingsView(excludedApps: excludedApps, layouts: layouts)))
         window.title = "Kader-instellingen"
         window.styleMask = [.titled, .closable]
         // Hergebruiken na sluiten, zodat er nooit twee instellingenvensters zijn.

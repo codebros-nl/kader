@@ -133,6 +133,23 @@ final class WindowManager {
         return unsafeDowncast(value, to: AXUIElement.self)
     }
 
+    /// Zichtbare standaardvensters van een app (geen dialogen, paletten of geminimaliseerde vensters),
+    /// in de volgorde waarin de app ze teruggeeft.
+    func standardWindows(ofProcess pid: pid_t) -> [AXUIElement] {
+        let appElement = AXUIElementCreateApplication(pid)
+        guard let windows = copyAttribute(kAXWindowsAttribute, of: appElement) as? [AXUIElement] else {
+            return []
+        }
+        return windows.filter { window in
+            copyAttribute(kAXSubroleAttribute, of: window) as? String == kAXStandardWindowSubrole
+                && copyAttribute(kAXMinimizedAttribute, of: window) as? Bool != true
+        }
+    }
+
+    func title(of window: AXUIElement) -> String {
+        copyAttribute(kAXTitleAttribute, of: window) as? String ?? ""
+    }
+
     /// Bundle-ID van de app waar een venster bij hoort.
     func bundleIdentifier(of window: AXUIElement) -> String? {
         var pid: pid_t = 0
@@ -176,7 +193,7 @@ final class WindowManager {
 
     /// Eerst grootte, dan positie, dan nog eens grootte: zo komen ook vensters met een
     /// minimale grootte of een scherm-afhankelijke maximale grootte goed terecht (aanpak van Rectangle).
-    private func setFrame(_ frame: CGRect, of window: AXUIElement) {
+    func setFrame(_ frame: CGRect, of window: AXUIElement) {
         setSize(frame.size, of: window)
         setPosition(frame.origin, of: window)
         setSize(frame.size, of: window)

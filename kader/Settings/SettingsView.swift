@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     let excludedApps: ExcludedApps
+    let layouts: LayoutService
 
     var body: some View {
         TabView {
@@ -10,6 +11,9 @@ struct SettingsView: View {
 
             ShortcutSettingsView()
                 .tabItem { Label("Sneltoetsen", systemImage: "keyboard") }
+
+            LayoutSettingsView(layouts: layouts)
+                .tabItem { Label("Layouts", systemImage: "rectangle.3.group") }
 
             ExclusionSettingsView(excludedApps: excludedApps)
                 .tabItem { Label("Uitzonderingen", systemImage: "nosign") }
