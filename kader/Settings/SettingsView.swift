@@ -9,6 +9,12 @@ struct SettingsView: View {
             GeneralSettingsView()
                 .tabItem { Label("Algemeen", systemImage: "gearshape") }
 
+            DragSettingsView()
+                .tabItem { Label("Slepen", systemImage: "hand.draw") }
+
+            ZoneSettingsView()
+                .tabItem { Label("Zones", systemImage: "square.grid.3x2") }
+
             ShortcutSettingsView()
                 .tabItem { Label("Sneltoetsen", systemImage: "keyboard") }
 
@@ -18,6 +24,6 @@ struct SettingsView: View {
             ExclusionSettingsView(excludedApps: excludedApps)
                 .tabItem { Label("Uitzonderingen", systemImage: "nosign") }
         }
-        .frame(width: 460, height: 520)
+        .frame(width: 580, height: 560)
     }
 }

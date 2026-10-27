@@ -213,3 +213,20 @@ struct ScreenGeometryTests {
         )
     }
 }
+
+struct ScreenUnderPointTests {
+    // Groot hoofdscherm met rechts een klein scherm: het midden van het kleine scherm
+    // ligt dichter bij de rechterkant van het grote scherm dan diens eigen midden.
+    private let large = ScreenGeometry.Screen(frame: CGRect(x: 0, y: 0, width: 3000, height: 1600), visibleFrame: .zero)
+    private let small = ScreenGeometry.Screen(frame: CGRect(x: 3000, y: 0, width: 800, height: 600), visibleFrame: .zero)
+
+    @Test func usesTheScreenUnderThePointNotTheNearestCenter() {
+        #expect(ScreenGeometry.screen(containing: CGPoint(x: 2900, y: 300), in: [large, small]) == large)
+        #expect(ScreenGeometry.screen(containing: CGPoint(x: 3100, y: 300), in: [large, small]) == small)
+    }
+
+    @Test func includesRightAndBottomEdge() {
+        #expect(ScreenGeometry.screen(containing: CGPoint(x: 3800, y: 600), in: [large, small]) == small)
+        #expect(ScreenGeometry.screen(containing: CGPoint(x: 5000, y: 300), in: [large, small]) == nil)
+    }
+}

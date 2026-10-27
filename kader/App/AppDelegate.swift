@@ -31,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     )
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        UserDefaults.standard.register(defaults: [SettingsKey.dragToSnap: true])
+        UserDefaults.standard.register(defaults: [SettingsKey.dragToSnap: true, SettingsKey.zonesEnabled: true])
         hotkeys.registerAll()
         snapDetector.start()
         layouts.startAutoApply()

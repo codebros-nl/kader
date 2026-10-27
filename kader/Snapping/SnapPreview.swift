@@ -3,7 +3,7 @@ import AppKit
 /// Semi-transparante rechthoek die tijdens het slepen laat zien waar het venster terechtkomt.
 @MainActor
 final class SnapPreview {
-    private lazy var panel = makePanel()
+    private lazy var panel = NSPanel.makeOverlay(contentView: makeContentView())
 
     /// Toont de preview op een frame in Accessibility-coördinaten.
     func show(_ frame: CGRect) {
@@ -26,21 +26,7 @@ final class SnapPreview {
         panel.orderOut(nil)
     }
 
-    private func makePanel() -> NSPanel {
-        let panel = NSPanel(
-            contentRect: .zero,
-            styleMask: [.borderless, .nonactivatingPanel],
-            backing: .buffered,
-            defer: true
-        )
-        panel.isOpaque = false
-        panel.backgroundColor = .clear
-        panel.hasShadow = false
-        panel.ignoresMouseEvents = true
-        panel.level = .floating
-        panel.isReleasedWhenClosed = false
-        panel.collectionBehavior = [.canJoinAllSpaces, .transient, .fullScreenAuxiliary, .ignoresCycle]
-
+    private func makeContentView() -> NSView {
         let view = NSView()
         view.wantsLayer = true
         if let layer = view.layer {
@@ -49,7 +35,6 @@ final class SnapPreview {
             layer.borderWidth = 2
             layer.cornerRadius = 10
         }
-        panel.contentView = view
-        return panel
+        return view
     }
 }
