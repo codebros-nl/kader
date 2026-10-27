@@ -5,12 +5,13 @@ import AppKit
 final class AppDelegate: NSObject, NSApplicationDelegate {
     let permission = AccessibilityPermission()
     private let windowManager = WindowManager()
+    private let settingsWindow = SettingsWindowController()
     private lazy var hotkeys = HotkeyService { [weak self] action in
         self?.perform(action)
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        hotkeys.register(Hotkey.defaults)
+        hotkeys.registerAll()
     }
 
     /// Gedeeld startpunt voor sneltoetsen en het menu.
@@ -20,5 +21,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         windowManager.perform(action)
+    }
+
+    func openSettings() {
+        settingsWindow.show()
     }
 }

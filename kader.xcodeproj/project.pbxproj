@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		52E99BF43090934600075384 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 52E99BF33090934600075384 /* KeyboardShortcuts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		522E6BFD308FC12300D0F999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -51,6 +55,7 @@
 		522E6BEC308FC12200D0F999 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				52E99BF43090934600075384 /* KeyboardShortcuts in Frameworks */,
 			);
 		};
 		522E6BF9308FC12300D0F999 /* Frameworks */ = {
@@ -103,6 +108,9 @@
 				522E6BF1308FC12200D0F999 /* kader */,
 			);
 			name = kader;
+			packageProductDependencies = (
+				52E99BF33090934600075384 /* KeyboardShortcuts */,
+			);
 			productName = kader;
 			productReference = 522E6BEF308FC12200D0F999 /* kader.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +189,9 @@
 			);
 			mainGroup = 522E6BE6308FC12200D0F999;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				52E99BF23090934600075384 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 522E6BF0308FC12200D0F999 /* Products */;
 			projectDirPath = "";
@@ -535,6 +546,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52E99BF23090934600075384 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52E99BF33090934600075384 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52E99BF23090934600075384 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 522E6BE7308FC12200D0F999 /* Project object */;
 	validationLevel = 1;

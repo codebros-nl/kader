@@ -1,14 +1,10 @@
+import KeyboardShortcuts
 import SwiftUI
 
 struct MenuContent: View {
     let permission: AccessibilityPermission
     let perform: (WindowAction) -> Void
-
-    private static let sections: [[WindowAction]] = [
-        [.leftHalf, .rightHalf, .topHalf, .bottomHalf],
-        [.topLeft, .topRight, .bottomLeft, .bottomRight],
-        [.maximize, .center],
-    ]
+    let openSettings: () -> Void
 
     var body: some View {
         if permission.isGranted {
@@ -23,18 +19,23 @@ struct MenuContent: View {
             }
         }
 
-        ForEach(Self.sections, id: \.self) { section in
+        ForEach(WindowAction.groups, id: \.self) { group in
             Divider()
-            ForEach(section) { action in
+            ForEach(group) { action in
                 Button(action.title) {
                     perform(action)
                 }
-                .keyboardShortcut(Hotkey.defaultShortcut(for: action))
+                .globalKeyboardShortcut(action.shortcutName)
                 .disabled(!permission.isGranted)
             }
         }
 
         Divider()
+
+        Button("Instellingen…") {
+            openSettings()
+        }
+        .keyboardShortcut(",")
 
         Button("Stop Kader") {
             NSApplication.shared.terminate(nil)
