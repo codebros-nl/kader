@@ -5,6 +5,7 @@ import AppKit
 final class AppDelegate: NSObject, NSApplicationDelegate {
     let permission = AccessibilityPermission()
     private let windowManager = WindowManager()
+    private let settingsWindow = SettingsWindowController()
     private lazy var hotkeys = HotkeyService { [weak self] action in
         self?.perform(action)
     }
@@ -20,5 +21,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         windowManager.perform(action)
+    }
+
+    func openSettings() {
+        settingsWindow.show()
     }
 }
