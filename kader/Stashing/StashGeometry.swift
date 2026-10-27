@@ -47,6 +47,12 @@ nonisolated enum StashGeometry {
         return CGRect(x: x, y: y, width: width, height: height)
     }
 
+    /// Waar een venster terechtkomt bij terugzetten: de oude plek als die nog op een scherm ligt,
+    /// anders de uitgeschoven plek, bijvoorbeeld nadat de oude monitor is losgekoppeld.
+    static func unstashFrame(original: CGRect, fallback: CGRect, screens: [ScreenGeometry.Screen]) -> CGRect {
+        screens.contains { $0.visibleFrame.intersects(original) } ? original : fallback
+    }
+
     /// Of de cursor tegen de rand staat, ter hoogte van het geparkeerde venster.
     static func shouldReveal(
         cursor: CGPoint,
@@ -63,7 +69,6 @@ nonisolated enum StashGeometry {
 
     /// Of de cursor ver genoeg van het uitgeschoven venster is om het weer te parkeren.
     static func shouldHide(cursor: CGPoint, revealedFrame: CGRect) -> Bool {
-        let area = revealedFrame.insetBy(dx: -hideMargin, dy: -hideMargin)
-        return !(cursor.x >= area.minX && cursor.x <= area.maxX && cursor.y >= area.minY && cursor.y <= area.maxY)
+        !ScreenGeometry.containsInclusive(revealedFrame.insetBy(dx: -hideMargin, dy: -hideMargin), cursor)
     }
 }

@@ -19,6 +19,15 @@ nonisolated struct FrameHistory<Window: Hashable> {
         lastKaderFrames[window] = frame
     }
 
+    /// Vensters waarvan de geschiedenis wordt bijgehouden.
+    var windows: [Window] { Array(originalFrames.keys) }
+
+    /// Geschiedenis van een venster wissen, bijvoorbeeld nadat het is gesloten.
+    mutating func forget(_ window: Window) {
+        originalFrames[window] = nil
+        lastKaderFrames[window] = nil
+    }
+
     /// Het frame om naar terug te gaan. Daarna is de geschiedenis van dit venster leeg.
     mutating func takeRestoreFrame(for window: Window) -> CGRect? {
         lastKaderFrames[window] = nil

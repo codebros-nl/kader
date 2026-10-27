@@ -13,6 +13,7 @@ final class LayoutService {
     @ObservationIgnored private let windowManager: WindowManager
     @ObservationIgnored private let excludedApps: ExcludedApps
     @ObservationIgnored private let permission: AccessibilityPermission
+    @ObservationIgnored private let stashedOriginalFrame: (AXUIElement) -> CGRect?
     @ObservationIgnored private let logger = Logger(subsystem: "nl.codebros.kader", category: "LayoutService")
     @ObservationIgnored private var screenObserver: NSObjectProtocol?
     @ObservationIgnored private var pendingAutoApply: Task<Void, Never>?
@@ -24,12 +25,14 @@ final class LayoutService {
         store: LayoutStore,
         windowManager: WindowManager,
         excludedApps: ExcludedApps,
-        permission: AccessibilityPermission
+        permission: AccessibilityPermission,
+        stashedOriginalFrame: @escaping (AXUIElement) -> CGRect?
     ) {
         self.store = store
         self.windowManager = windowManager
         self.excludedApps = excludedApps
         self.permission = permission
+        self.stashedOriginalFrame = stashedOriginalFrame
         currentSetup = ScreenSetup(screens: windowManager.currentScreens())
     }
 
@@ -50,7 +53,7 @@ final class LayoutService {
 
     /// Slaat de huidige indeling op als nieuwe layout voor de huidige schermopstelling.
     func saveCurrentLayout() {
-        guard permission.isGranted else {
+        guard permission.refresh() else {
             permission.request()
             return
         }
@@ -66,7 +69,8 @@ final class LayoutService {
     private func captureWindows() -> [WindowPlacement] {
         layoutApps().flatMap { app, bundleIdentifier in
             windowManager.standardWindows(ofProcess: app.processIdentifier).compactMap { window in
-                windowManager.frame(of: window).map {
+                // Een geparkeerd venster op zijn oude plek vastleggen, niet half buiten beeld.
+                (stashedOriginalFrame(window) ?? windowManager.frame(of: window)).map {
                     WindowPlacement(bundleIdentifier: bundleIdentifier, title: windowManager.title(of: window), frame: $0)
                 }
             }
@@ -80,7 +84,7 @@ final class LayoutService {
     }
 
     func apply(_ layout: Layout) {
-        guard permission.isGranted else {
+        guard permission.refresh() else {
             permission.request()
             return
         }
@@ -92,7 +96,9 @@ final class LayoutService {
         for (app, bundleIdentifier) in layoutApps() {
             guard let placements = placementsByApp[bundleIdentifier] else { continue }
 
+            // Geparkeerde vensters blijven staan; verplaatsen zou ze los van StashManager buiten beeld zetten.
             let windows = windowManager.standardWindows(ofProcess: app.processIdentifier)
+                .filter { stashedOriginalFrame($0) == nil }
                 .map { (window: $0, title: windowManager.title(of: $0)) }
             for (window, frame) in LayoutMatcher.match(placements, to: windows) {
                 windowManager.setFrame(frame, of: window)
@@ -105,7 +111,11 @@ final class LayoutService {
     // MARK: - Schermopstelling
 
     private func screensDidChange() {
-        currentSetup = ScreenSetup(screens: windowManager.currentScreens())
+        // macOS stuurt deze melding ook bij ontwaken of een Dock-wijziging; alleen een
+        // andere opstelling (monitor erbij of eraf, andere plek of resolutie) telt.
+        let setup = ScreenSetup(screens: windowManager.currentScreens())
+        guard setup != currentSetup else { return }
+        currentSetup = setup
 
         pendingAutoApply?.cancel()
         guard let layout = store.automaticLayout(for: currentSetup) else { return }

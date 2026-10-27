@@ -11,6 +11,16 @@ final class WindowManager {
     private var history = FrameHistory<AXUIElement>()
     private let systemWideElement = AXUIElementCreateSystemWide()
 
+    /// Maximale wachttijd per AX-aanroep. Standaard is dat ongeveer 6 seconden, waardoor een
+    /// hangende app Kader zou bevriezen. Ingesteld op het systeembrede element geldt het voor alle aanroepen.
+    private static let messagingTimeout: Float = 0.5
+    /// Vanaf dit aantal vensters in de geschiedenis worden gesloten vensters opgeruimd.
+    private static let historyPruneThreshold = 32
+
+    init() {
+        AXUIElementSetMessagingTimeout(systemWideElement, Self.messagingTimeout)
+    }
+
     /// Voert een actie uit op het gefocuste venster (sneltoetsen en menu).
     func perform(_ action: WindowAction) {
         guard let window = focusedWindow() else {
@@ -70,6 +80,7 @@ final class WindowManager {
         }
 
         if action != .restore {
+            pruneHistoryIfNeeded()
             history.willMove(window, from: originalFrame ?? currentFrame)
         }
         setFrame(target, of: window)
@@ -85,9 +96,20 @@ final class WindowManager {
     /// Zet een venster op een vrij gekozen frame, bijvoorbeeld een eigen zone.
     /// Herstellen gaat daarna terug naar `originalFrame`.
     func place(_ window: AXUIElement, at frame: CGRect, originalFrame: CGRect) {
+        pruneHistoryIfNeeded()
         history.willMove(window, from: originalFrame)
         setFrame(frame, of: window)
         history.didMove(window, to: self.frame(of: window) ?? frame)
+    }
+
+    /// Gesloten vensters uit de geschiedenis halen, zodat die niet blijft groeien bij dagelijks gebruik.
+    /// Alleen boven een drempel, omdat het per venster een AX-aanroep kost.
+    private func pruneHistoryIfNeeded() {
+        let windows = history.windows
+        guard windows.count >= Self.historyPruneThreshold else { return }
+        for window in windows where frame(of: window) == nil {
+            history.forget(window)
+        }
     }
 
     var windowGap: CGFloat {

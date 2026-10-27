@@ -74,4 +74,18 @@ struct StashGeometryTests {
         #expect(StashGeometry.shouldHide(cursor: CGPoint(x: 700, y: 300), revealedFrame: revealed))
         #expect(StashGeometry.shouldHide(cursor: CGPoint(x: 300, y: 650), revealedFrame: revealed))
     }
+
+    @Test func unstashGoesBackToOriginalWhenStillOnScreen() {
+        let original = CGRect(x: 300, y: 200, width: 600, height: 400)
+        let fallback = CGRect(x: 0, y: 200, width: 600, height: 400)
+        #expect(StashGeometry.unstashFrame(original: original, fallback: fallback, screens: [primary]) == original)
+    }
+
+    @Test func unstashUsesFallbackWhenOriginalScreenIsGone() {
+        // Het venster stond op de linkermonitor, die inmiddels is losgekoppeld.
+        let original = CGRect(x: -1500, y: 100, width: 600, height: 400)
+        let fallback = CGRect(x: 0, y: 100, width: 600, height: 400)
+        #expect(StashGeometry.unstashFrame(original: original, fallback: fallback, screens: [primary]) == fallback)
+        #expect(StashGeometry.unstashFrame(original: original, fallback: fallback, screens: [primary, left]) == original)
+    }
 }
