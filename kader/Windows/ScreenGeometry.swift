@@ -29,6 +29,12 @@ nonisolated enum ScreenGeometry {
         )
     }
 
+    /// Zet een punt om tussen Cocoa- en Accessibility-coördinaten, bijvoorbeeld de muispositie.
+    /// Ook deze omzetting is symmetrisch.
+    static func convert(_ point: CGPoint, primaryScreenHeight: CGFloat) -> CGPoint {
+        CGPoint(x: point.x, y: primaryScreenHeight - point.y)
+    }
+
     /// Zet schermen uit `NSScreen.screens` (Cocoa-coördinaten) om naar Accessibility-coördinaten.
     /// Het eerste scherm is het hoofdscherm met de menubalk, net als bij `NSScreen.screens`.
     static func accessibilityScreens(fromCocoa screens: [Screen]) -> [Screen] {

@@ -9,18 +9,36 @@ final class WindowManager {
     private let logger = Logger(subsystem: "nl.codebros.kader", category: "WindowManager")
     private var cycle = ActionCycle<AXUIElement>()
     private var history = FrameHistory<AXUIElement>()
+    private let systemWideElement = AXUIElementCreateSystemWide()
 
+    /// Voert een actie uit op het gefocuste venster (sneltoetsen en menu).
     func perform(_ action: WindowAction) {
         guard let window = focusedWindow() else {
             logger.info("Geen gefocust venster gevonden voor \(action.rawValue, privacy: .public)")
             return
         }
+        perform(action, on: window)
+    }
+
+    /// Voert een actie uit op een bepaald venster.
+    ///
+    /// - Parameters:
+    ///   - targetScreen: Scherm voor de actie. Standaard het scherm waar het venster het meest op staat;
+    ///     bij slepen het scherm onder de cursor.
+    ///   - originalFrame: Frame om later naar te herstellen. Standaard het huidige frame;
+    ///     bij slepen het frame van vóór het slepen.
+    func perform(
+        _ action: WindowAction,
+        on window: AXUIElement,
+        screen targetScreen: ScreenGeometry.Screen? = nil,
+        originalFrame: CGRect? = nil
+    ) {
         guard let currentFrame = frame(of: window) else {
-            logger.info("Frame van het gefocuste venster is niet leesbaar")
+            logger.info("Frame van het venster is niet leesbaar")
             return
         }
         let screens = currentScreens()
-        guard let screen = ScreenGeometry.screen(for: currentFrame, in: screens) else {
+        guard let screen = targetScreen ?? ScreenGeometry.screen(for: currentFrame, in: screens) else {
             logger.error("Geen scherm gevonden")
             return
         }
@@ -52,7 +70,7 @@ final class WindowManager {
         }
 
         if action != .restore {
-            history.willMove(window, from: currentFrame)
+            history.willMove(window, from: originalFrame ?? currentFrame)
         }
         setFrame(target, of: window)
 
@@ -64,7 +82,7 @@ final class WindowManager {
         cycle.record(action, step: step, window: window, resultingFrame: resultingFrame)
     }
 
-    private var windowGap: CGFloat {
+    var windowGap: CGFloat {
         max(0, UserDefaults.standard.double(forKey: SettingsKey.windowGap))
     }
 
@@ -88,16 +106,49 @@ final class WindowManager {
         return unsafeDowncast(value, to: AXUIElement.self)
     }
 
-    private func currentScreens() -> [ScreenGeometry.Screen] {
+    /// Het venster van een andere app onder een punt, bijvoorbeeld onder de cursor bij het slepen.
+    func window(at point: CGPoint) -> AXUIElement? {
+        var element: AXUIElement?
+        let error = AXUIElementCopyElementAtPosition(systemWideElement, Float(point.x), Float(point.y), &element)
+        guard error == .success, let element else { return nil }
+
+        var pid: pid_t = 0
+        guard
+            AXUIElementGetPid(element, &pid) == .success,
+            pid != ProcessInfo.processInfo.processIdentifier
+        else {
+            return nil
+        }
+
+        if copyAttribute(kAXRoleAttribute, of: element) as? String == kAXWindowRole {
+            return element
+        }
+        // Meestal een onderdeel van het venster, zoals de titelbalk.
+        guard
+            let value = copyAttribute(kAXWindowAttribute, of: element),
+            CFGetTypeID(value) == AXUIElementGetTypeID()
+        else {
+            return nil
+        }
+        return unsafeDowncast(value, to: AXUIElement.self)
+    }
+
+    func currentScreens() -> [ScreenGeometry.Screen] {
         let cocoaScreens = NSScreen.screens.map {
             ScreenGeometry.Screen(frame: $0.frame, visibleFrame: $0.visibleFrame)
         }
         return ScreenGeometry.accessibilityScreens(fromCocoa: cocoaScreens)
     }
 
+    /// De muispositie in Accessibility-coördinaten.
+    func cursorLocation() -> CGPoint {
+        let primaryHeight = NSScreen.screens.first?.frame.height ?? 0
+        return ScreenGeometry.convert(NSEvent.mouseLocation, primaryScreenHeight: primaryHeight)
+    }
+
     // MARK: - Frame lezen en zetten
 
-    private func frame(of window: AXUIElement) -> CGRect? {
+    func frame(of window: AXUIElement) -> CGRect? {
         guard
             let positionValue = axValue(kAXPositionAttribute, of: window),
             let sizeValue = axValue(kAXSizeAttribute, of: window)

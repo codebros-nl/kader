@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @AppStorage(SettingsKey.windowGap) private var windowGap: Double = 0
+    @AppStorage(SettingsKey.dragToSnap) private var dragToSnap = true
     @State private var launchAtLogin = LaunchAtLogin()
 
     var body: some View {
@@ -10,6 +11,8 @@ struct GeneralSettingsView: View {
                 get: { launchAtLogin.isEnabled },
                 set: { launchAtLogin.setEnabled($0) }
             ))
+
+            Toggle("Vensters snappen door naar een schermrand te slepen", isOn: $dragToSnap)
 
             LabeledContent("Marge tussen vensters") {
                 HStack {
