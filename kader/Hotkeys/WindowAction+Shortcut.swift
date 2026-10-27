@@ -12,7 +12,8 @@ extension WindowAction {
         uniqueKeysWithValues: allCases.map { ($0, KeyboardShortcuts.Name($0.rawValue, initial: $0.initialShortcut)) }
     )
 
-    /// Beginwaarden zoals Magnet: Ctrl+Option+toets, met Command erbij voor ander scherm.
+    /// Beginwaarden zoals Magnet: Ctrl+Option+toets, met Command erbij voor ander scherm
+    /// en Shift erbij voor parkeren.
     private var initialShortcut: KeyboardShortcuts.Shortcut {
         let modifiers: NSEvent.ModifierFlags = [.control, .option]
 
@@ -35,6 +36,9 @@ extension WindowAction {
         case .restore: return .init(.delete, modifiers: modifiers)
         case .nextScreen: return .init(.rightArrow, modifiers: modifiers.union(.command))
         case .previousScreen: return .init(.leftArrow, modifiers: modifiers.union(.command))
+        case .stashLeft: return .init(.leftArrow, modifiers: modifiers.union(.shift))
+        case .stashRight: return .init(.rightArrow, modifiers: modifiers.union(.shift))
+        case .unstashAll: return .init(.upArrow, modifiers: modifiers.union(.shift))
         }
     }
 }

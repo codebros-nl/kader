@@ -85,7 +85,7 @@ nonisolated enum ScreenGeometry {
     /// - Parameters:
     ///   - step: Hoe vaak de actie achter elkaar is herhaald, voor acties met `cycleLength > 1`.
     ///   - gap: Marge tussen vensters onderling en tussen venster en schermrand.
-    /// - Returns: Nil voor acties zonder vaste indeling (ander scherm, herstellen).
+    /// - Returns: Nil voor acties zonder vaste indeling (ander scherm, herstellen, parkeren).
     static func targetFrame(
         for action: WindowAction,
         step: Int = 0,
@@ -155,7 +155,7 @@ nonisolated enum ScreenGeometry {
         case .firstTwoThirds: return span(0, 2.0 / 3)
         case .lastTwoThirds: return span(1.0 / 3, 2.0 / 3)
         case .maximize: return CGRect(x: 0, y: 0, width: 1, height: 1)
-        case .center, .nextScreen, .previousScreen, .restore: return nil
+        case .center, .nextScreen, .previousScreen, .restore, .stashLeft, .stashRight, .unstashAll: return nil
         }
     }
 

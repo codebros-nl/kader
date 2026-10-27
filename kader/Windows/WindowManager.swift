@@ -88,7 +88,7 @@ final class WindowManager {
 
     // MARK: - Venster ophalen
 
-    private func focusedWindow() -> AXUIElement? {
+    func focusedWindow() -> AXUIElement? {
         guard
             let app = NSWorkspace.shared.frontmostApplication,
             app.processIdentifier != ProcessInfo.processInfo.processIdentifier
@@ -148,6 +148,15 @@ final class WindowManager {
 
     func title(of window: AXUIElement) -> String {
         copyAttribute(kAXTitleAttribute, of: window) as? String ?? ""
+    }
+
+    /// Haalt een venster naar voren en activeert de app, zodat het venster de focus krijgt.
+    func raise(_ window: AXUIElement) {
+        AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+        var pid: pid_t = 0
+        if AXUIElementGetPid(window, &pid) == .success {
+            NSRunningApplication(processIdentifier: pid)?.activate()
+        }
     }
 
     /// Bundle-ID van de app waar een venster bij hoort.
