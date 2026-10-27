@@ -8,6 +8,9 @@ struct KaderApp: App {
         MenuBarExtra("Kader", systemImage: "rectangle.split.2x2") {
             MenuContent(
                 permission: appDelegate.permission,
+                excludedApps: appDelegate.excludedApps,
+                frontmostApp: appDelegate.frontmostApp,
+                layouts: appDelegate.layouts,
                 perform: appDelegate.perform,
                 openSettings: appDelegate.openSettings
             )

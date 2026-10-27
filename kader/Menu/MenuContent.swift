@@ -3,6 +3,9 @@ import SwiftUI
 
 struct MenuContent: View {
     let permission: AccessibilityPermission
+    let excludedApps: ExcludedApps
+    let frontmostApp: FrontmostApp
+    let layouts: LayoutService
     let perform: (WindowAction) -> Void
     let openSettings: () -> Void
 
@@ -31,6 +34,29 @@ struct MenuContent: View {
         }
 
         Divider()
+
+        Menu("Layouts") {
+            ForEach(layouts.store.layouts) { layout in
+                Button(layout.name) {
+                    layouts.apply(layout)
+                }
+                .disabled(!layouts.canApply(layout))
+            }
+            if !layouts.store.layouts.isEmpty {
+                Divider()
+            }
+            Button("Huidige indeling opslaan") {
+                layouts.saveCurrentLayout()
+            }
+        }
+        .disabled(!permission.isGranted)
+
+        if let bundleIdentifier = frontmostApp.bundleIdentifier, let name = frontmostApp.name {
+            Toggle("Negeer \(name)", isOn: Binding(
+                get: { excludedApps.contains(bundleIdentifier) },
+                set: { excludedApps.setExcluded($0, bundleIdentifier: bundleIdentifier) }
+            ))
+        }
 
         Button("Instellingen…") {
             openSettings()

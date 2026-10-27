@@ -19,4 +19,9 @@ final class HotkeyService {
             }
         }
     }
+
+    /// Uitgeschakeld geeft KeyboardShortcuts de toetsen vrij, zodat de app vooraan ze zelf ontvangt.
+    func setEnabled(_ enabled: Bool) {
+        KeyboardShortcuts.isEnabled = enabled
+    }
 }

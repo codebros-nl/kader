@@ -22,14 +22,22 @@ final class SnapDetector {
 
     private let windowManager: WindowManager
     private let isEnabled: () -> Bool
+    private let allowsWindow: (AXUIElement) -> Bool
     private let preview = SnapPreview()
     private var state = State.idle
     private var monitor: Any?
 
-    /// - Parameter isEnabled: Wordt bij elke muisklik opnieuw gelezen, zodat de instelling direct werkt.
-    init(windowManager: WindowManager, isEnabled: @escaping () -> Bool) {
+    /// - Parameters:
+    ///   - isEnabled: Wordt bij elke muisklik opnieuw gelezen, zodat de instelling direct werkt.
+    ///   - allowsWindow: Of een venster mag snappen, bijvoorbeeld niet als de app wordt genegeerd.
+    init(
+        windowManager: WindowManager,
+        isEnabled: @escaping () -> Bool,
+        allowsWindow: @escaping (AXUIElement) -> Bool
+    ) {
         self.windowManager = windowManager
         self.isEnabled = isEnabled
+        self.allowsWindow = allowsWindow
     }
 
     func start() {
@@ -64,7 +72,11 @@ final class SnapDetector {
         switch state {
         case .pressed(let start):
             // Pas bij de eerste sleepbeweging het venster opzoeken, niet bij elke gewone klik.
-            guard let window = windowManager.window(at: start), let frame = windowManager.frame(of: window) else {
+            guard
+                let window = windowManager.window(at: start),
+                allowsWindow(window),
+                let frame = windowManager.frame(of: window)
+            else {
                 state = .ignored
                 return
             }
