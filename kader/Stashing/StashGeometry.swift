@@ -69,7 +69,6 @@ nonisolated enum StashGeometry {
 
     /// Of de cursor ver genoeg van het uitgeschoven venster is om het weer te parkeren.
     static func shouldHide(cursor: CGPoint, revealedFrame: CGRect) -> Bool {
-        let area = revealedFrame.insetBy(dx: -hideMargin, dy: -hideMargin)
-        return !(cursor.x >= area.minX && cursor.x <= area.maxX && cursor.y >= area.minY && cursor.y <= area.maxY)
+        !ScreenGeometry.containsInclusive(revealedFrame.insetBy(dx: -hideMargin, dy: -hideMargin), cursor)
     }
 }

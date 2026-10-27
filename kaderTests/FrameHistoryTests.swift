@@ -48,3 +48,17 @@ struct FrameHistoryTests {
         #expect(history.takeRestoreFrame(for: 1) == original)
     }
 }
+
+extension FrameHistoryTests {
+    @Test func forgetRemovesWindowFromHistory() {
+        var history = FrameHistory<Int>()
+        history.willMove(1, from: original)
+        history.didMove(1, to: leftHalf)
+        history.willMove(2, from: original)
+
+        history.forget(1)
+        #expect(history.windows == [2])
+        #expect(history.takeRestoreFrame(for: 1) == nil)
+        #expect(history.takeRestoreFrame(for: 2) == original)
+    }
+}

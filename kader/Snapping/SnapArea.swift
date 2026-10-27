@@ -32,13 +32,13 @@ nonisolated enum SnapArea {
 
         // Een rand telt alleen als er aan de andere kant geen scherm ligt.
         let nearLeft = point.x <= frame.minX + edgeThreshold
-            && !others.contains { containsInclusive($0, CGPoint(x: frame.minX - 1, y: point.y)) }
+            && !others.contains { ScreenGeometry.containsInclusive($0, CGPoint(x: frame.minX - 1, y: point.y)) }
         let nearRight = point.x >= frame.maxX - edgeThreshold
-            && !others.contains { containsInclusive($0, CGPoint(x: frame.maxX + 1, y: point.y)) }
+            && !others.contains { ScreenGeometry.containsInclusive($0, CGPoint(x: frame.maxX + 1, y: point.y)) }
         let nearTop = point.y <= frame.minY + edgeThreshold
-            && !others.contains { containsInclusive($0, CGPoint(x: point.x, y: frame.minY - 1)) }
+            && !others.contains { ScreenGeometry.containsInclusive($0, CGPoint(x: point.x, y: frame.minY - 1)) }
         let nearBottom = point.y >= frame.maxY - edgeThreshold
-            && !others.contains { containsInclusive($0, CGPoint(x: point.x, y: frame.maxY + 1)) }
+            && !others.contains { ScreenGeometry.containsInclusive($0, CGPoint(x: point.x, y: frame.maxY + 1)) }
 
         let inLeftBand = point.x <= frame.minX + cornerSize
         let inRightBand = point.x >= frame.maxX - cornerSize
@@ -80,9 +80,5 @@ nonisolated enum SnapArea {
             action = relative < 1.0 / 3 ? .firstThird : relative < 2.0 / 3 ? .centerThird : .lastThird
         }
         return Snap(action: action, screen: screen)
-    }
-
-    private static func containsInclusive(_ rect: CGRect, _ point: CGPoint) -> Bool {
-        ScreenGeometry.containsInclusive(rect, point)
     }
 }

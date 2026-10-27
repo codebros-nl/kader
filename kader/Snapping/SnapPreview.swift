@@ -7,16 +7,10 @@ final class SnapPreview {
 
     /// Toont de preview op een frame in Accessibility-coördinaten.
     func show(_ frame: CGRect) {
-        guard let primaryHeight = NSScreen.screens.first?.frame.height else { return }
-        let cocoaFrame = ScreenGeometry.convert(frame, primaryScreenHeight: primaryHeight)
-
-        if panel.isVisible {
-            NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.12
-                panel.animator().setFrame(cocoaFrame, display: true)
-            }
-        } else {
-            panel.setFrame(cocoaFrame, display: true)
+        // Alleen animeren als de preview al zichtbaar is, anders vliegt hij vanaf de vorige plek in.
+        let isVisible = panel.isVisible
+        panel.setFrame(inAccessibilityCoordinates: frame, animated: isVisible)
+        if !isVisible {
             // Naar voren zonder Kader te activeren, zodat het gesleepte venster de focus houdt.
             panel.orderFrontRegardless()
         }

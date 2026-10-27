@@ -21,9 +21,18 @@ extension NSPanel {
         return panel
     }
 
-    /// Zet het paneel op een frame in Accessibility-coördinaten.
-    func setFrame(inAccessibilityCoordinates frame: CGRect) {
+    /// Zet het paneel op een frame in Accessibility-coördinaten, desgewenst met een korte animatie.
+    func setFrame(inAccessibilityCoordinates frame: CGRect, animated: Bool = false) {
         guard let primaryHeight = NSScreen.screens.first?.frame.height else { return }
-        setFrame(ScreenGeometry.convert(frame, primaryScreenHeight: primaryHeight), display: true)
+        let cocoaFrame = ScreenGeometry.convert(frame, primaryScreenHeight: primaryHeight)
+
+        guard animated else {
+            setFrame(cocoaFrame, display: true)
+            return
+        }
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.12
+            animator().setFrame(cocoaFrame, display: true)
+        }
     }
 }
