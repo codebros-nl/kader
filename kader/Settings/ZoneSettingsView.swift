@@ -9,10 +9,10 @@ struct ZoneSettingsView: View {
 
     var body: some View {
         Form {
-            Toggle("Eigen zones tonen door tijdens het slepen Shift ingedrukt te houden", isOn: $zonesEnabled)
+            Toggle("Show custom zones by holding Shift while dragging", isOn: $zonesEnabled)
 
             Section {
-                Picker("Voorbeeldindeling", selection: Binding(
+                Picker(selection: Binding(
                     get: { ZoneGrid.presets.first { $0.columns == columns && $0.rows == rows }?.id ?? "" },
                     set: { id in
                         guard let preset = ZoneGrid.presets.first(where: { $0.id == id }) else { return }
@@ -20,27 +20,29 @@ struct ZoneSettingsView: View {
                         rows = preset.rows
                     }
                 )) {
-                    Text("Eigen indeling").tag("")
+                    Text("Custom", comment: "Zone preset picker: the user's own columns and rows").tag("")
                     ForEach(ZoneGrid.presets) { preset in
                         Text(preset.name).tag(preset.id)
                     }
+                } label: {
+                    Text("Preset", comment: "Label of the zone preset picker")
                 }
 
-                TextField("Kolommen (%)", text: $columns, prompt: Text("25, 50, 25"))
-                TextField("Rijen (%)", text: $rows, prompt: Text("100"))
+                TextField("Columns (%)", text: $columns, prompt: Text(verbatim: "25, 50, 25"))
+                TextField("Rows (%)", text: $rows, prompt: Text(verbatim: "100"))
 
                 if let grid {
                     ZonePreview(grid: grid)
                         .frame(height: 160)
                         .padding(.vertical, 4)
                 } else {
-                    Text("Gebruik getallen gescheiden door komma's, bijvoorbeeld 25, 50, 25.")
+                    Text("Use numbers separated by commas, for example 25, 50, 25.")
                         .foregroundStyle(.red)
                 }
             } header: {
                 Text("Zones")
             } footer: {
-                Text("Verhoudingen hoeven niet op te tellen tot 100; ze worden naar het scherm geschaald. De marge uit Algemeen geldt ook voor zones.")
+                Text("Ratios don't need to add up to 100; they're scaled to the screen. The gap from General also applies to zones.")
                     .foregroundStyle(.secondary)
             }
             .disabled(!zonesEnabled)
@@ -67,7 +69,7 @@ private struct ZonePreview: View {
                         .fill(Color.accentColor.opacity(0.15))
                         .strokeBorder(Color.accentColor.opacity(0.6), lineWidth: 1.5)
                         .overlay {
-                            Text("\(index + 1)")
+                            Text(verbatim: "\(index + 1)")
                                 .font(.caption.monospacedDigit())
                                 .foregroundStyle(.secondary)
                         }

@@ -5,16 +5,16 @@ struct DragSettingsView: View {
 
     var body: some View {
         Form {
-            Toggle("Vensters snappen door naar een schermrand te slepen", isOn: $dragToSnap)
+            Toggle("Snap windows by dragging them to a screen edge", isOn: $dragToSnap)
 
             Section {
                 ForEach(SnapPosition.allCases) { position in
                     SnapPositionPicker(position: position)
                 }
             } header: {
-                Text("Randen en hoeken")
+                Text("Edges and Corners")
             } footer: {
-                Button("Standaardwaarden herstellen") {
+                Button("Restore Defaults") {
                     for position in SnapPosition.allCases {
                         UserDefaults.standard.removeObject(forKey: position.settingsKey)
                     }

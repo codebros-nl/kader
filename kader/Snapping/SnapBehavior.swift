@@ -15,14 +15,14 @@ nonisolated enum SnapPosition: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .left: "Linkerrand"
-        case .right: "Rechterrand"
-        case .top: "Bovenrand"
-        case .bottom: "Onderrand"
-        case .topLeft: "Hoek linksboven"
-        case .topRight: "Hoek rechtsboven"
-        case .bottomLeft: "Hoek linksonder"
-        case .bottomRight: "Hoek rechtsonder"
+        case .left: String(localized: "Left Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .right: String(localized: "Right Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .top: String(localized: "Top Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottom: String(localized: "Bottom Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .topLeft: String(localized: "Top Left Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .topRight: String(localized: "Top Right Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottomLeft: String(localized: "Bottom Left Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottomRight: String(localized: "Bottom Right Corner", comment: "Screen edge or corner where a dragged window snaps")
         }
     }
 
@@ -83,8 +83,8 @@ nonisolated enum SnapBehavior: Hashable, Sendable, RawRepresentable {
 
     var title: String {
         switch self {
-        case .none: "Niets"
-        case .thirds: "Derden, op positie"
+        case .none: String(localized: "Do Nothing", comment: "What happens when a window is dropped on a screen edge or corner")
+        case .thirds: String(localized: "Thirds, by Position", comment: "What happens when a window is dropped on a screen edge or corner")
         case .action(let action): action.title
         }
     }

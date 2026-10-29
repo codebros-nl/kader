@@ -7,7 +7,7 @@ struct LayoutSettingsView: View {
         Form {
             Section {
                 if layouts.store.layouts.isEmpty {
-                    Text("Nog geen layouts opgeslagen")
+                    Text("No layouts saved yet")
                         .foregroundStyle(.secondary)
                 }
                 ForEach(layouts.store.layouts) { layout in
@@ -16,15 +16,15 @@ struct LayoutSettingsView: View {
             } header: {
                 Text("Layouts")
             } footer: {
-                Text("Een layout onthoudt waar de vensters van alle open apps staan. Automatisch toepassen gebeurt als deze schermopstelling actief wordt, bijvoorbeeld bij het aansluiten van een monitor.")
+                Text("A layout remembers where the windows of all open apps are. Layouts set to apply automatically are applied when their display arrangement becomes active, for example when you connect a monitor.")
                     .foregroundStyle(.secondary)
             }
 
             Section {
-                Button("Huidige indeling opslaan") {
+                Button("Save Current Layout") {
                     layouts.saveCurrentLayout()
                 }
-                LabeledContent("Huidige schermen", value: layouts.currentSetup.summary)
+                LabeledContent("Current displays", value: layouts.currentSetup.summary)
             }
         }
         .formStyle(.grouped)
@@ -48,7 +48,7 @@ private struct LayoutRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                TextField("Naam", text: $name)
+                TextField("Name", text: $name)
                     .textFieldStyle(.plain)
                     .font(.headline)
                     .focused($isEditingName)
@@ -57,11 +57,13 @@ private struct LayoutRow: View {
                         if !isEditingName { commitName() }
                     }
 
-                Button("Toepassen") {
+                Button {
                     layouts.apply(layout)
+                } label: {
+                    Text("Apply", comment: "Button: apply this saved layout")
                 }
                 .disabled(!layouts.canApply(layout))
-                .help(layouts.canApply(layout) ? "" : "Gemaakt voor andere schermen")
+                .help(layouts.canApply(layout) ? Text(verbatim: "") : Text("Made for other displays"))
 
                 Button {
                     layouts.store.remove(layout.id)
@@ -69,14 +71,14 @@ private struct LayoutRow: View {
                     Image(systemName: "trash")
                 }
                 .buttonStyle(.borderless)
-                .help("Verwijderen")
+                .help(Text("Delete", comment: "Tooltip: delete this saved layout"))
             }
 
-            Text("\(layout.windows.count) vensters · \(layout.screenSetup.summary)")
+            Text("\(layout.windows.count) windows · \(layout.screenSetup.summary)")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            Toggle("Automatisch toepassen bij deze schermen", isOn: Binding(
+            Toggle("Apply automatically on these displays", isOn: Binding(
                 get: { layout.appliesAutomatically },
                 set: { layouts.store.setAppliesAutomatically($0, for: layout.id) }
             ))

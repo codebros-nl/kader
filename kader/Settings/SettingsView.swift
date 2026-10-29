@@ -13,12 +13,12 @@ enum SettingsPane: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .general: "Algemeen"
-        case .drag: "Slepen"
-        case .zones: "Zones"
-        case .shortcuts: "Sneltoetsen"
-        case .layouts: "Layouts"
-        case .exclusions: "Uitzonderingen"
+        case .general: String(localized: "General", comment: "Settings sidebar item")
+        case .drag: String(localized: "Drag", comment: "Settings sidebar item")
+        case .zones: String(localized: "Zones", comment: "Settings sidebar item")
+        case .shortcuts: String(localized: "Shortcuts", comment: "Settings sidebar item")
+        case .layouts: String(localized: "Layouts", comment: "Settings sidebar item")
+        case .exclusions: String(localized: "Exclusions", comment: "Settings sidebar item")
         }
     }
 

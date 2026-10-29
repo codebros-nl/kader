@@ -58,7 +58,7 @@ final class LayoutService {
             return
         }
         let layout = Layout(
-            name: "Layout \(store.layouts.count + 1)",
+            name: String(localized: "Layout \(store.layouts.count + 1)"),
             screenSetup: currentSetup,
             windows: captureWindows()
         )

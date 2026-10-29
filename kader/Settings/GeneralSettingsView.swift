@@ -6,26 +6,26 @@ struct GeneralSettingsView: View {
 
     var body: some View {
         Form {
-            Toggle("Opstarten bij inloggen", isOn: Binding(
+            Toggle("Launch at login", isOn: Binding(
                 get: { launchAtLogin.isEnabled },
                 set: { launchAtLogin.setEnabled($0) }
             ))
 
             if launchAtLogin.needsApproval {
                 LabeledContent {
-                    Button("Open Inlogonderdelen") {
+                    Button("Open Login Items") {
                         launchAtLogin.openLoginItemsSettings()
                     }
                 } label: {
-                    Text("Keur Kader goed in Systeeminstellingen om bij inloggen te starten.")
+                    Text("Approve Kader in System Settings to launch it at login.")
                         .foregroundStyle(.secondary)
                 }
             }
 
-            LabeledContent("Marge tussen vensters") {
+            LabeledContent("Gap between windows") {
                 HStack {
                     Slider(value: $windowGap, in: 0...40, step: 1)
-                    Text("\(Int(windowGap)) pt")
+                    Text(verbatim: "\(Int(windowGap)) pt")
                         .monospacedDigit()
                         .frame(width: 44, alignment: .trailing)
                 }

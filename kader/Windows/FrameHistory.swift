@@ -1,6 +1,6 @@
 import CoreGraphics
 
-/// Onthoudt per venster het frame van vóór de eerste Kader-actie, voor "Herstellen".
+/// Onthoudt per venster het frame van vóór de eerste Kader-actie, voor `WindowAction.restore`.
 nonisolated struct FrameHistory<Window: Hashable> {
     private var originalFrames: [Window: CGRect] = [:]
     private var lastKaderFrames: [Window: CGRect] = [:]

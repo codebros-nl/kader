@@ -8,16 +8,16 @@ nonisolated struct ZoneGrid: Equatable, Sendable {
         var name: String
         var columns: String
         var rows: String
-        var id: String { name }
+        var id: String { "\(columns) | \(rows)" }
     }
 
     static let presets: [Preset] = [
-        Preset(name: "Focus in het midden", columns: "25, 50, 25", rows: "100"),
-        Preset(name: "Drie kolommen", columns: "33, 34, 33", rows: "100"),
-        Preset(name: "Vier kolommen", columns: "25, 25, 25, 25", rows: "100"),
-        Preset(name: "Hoofdvenster en zijbalk", columns: "65, 35", rows: "100"),
-        Preset(name: "Raster 2 × 2", columns: "50, 50", rows: "50, 50"),
-        Preset(name: "Raster 3 × 2", columns: "33, 34, 33", rows: "50, 50"),
+        Preset(name: String(localized: "Focus in the Middle", comment: "Zone layout preset"), columns: "25, 50, 25", rows: "100"),
+        Preset(name: String(localized: "Three Columns", comment: "Zone layout preset"), columns: "33, 34, 33", rows: "100"),
+        Preset(name: String(localized: "Four Columns", comment: "Zone layout preset"), columns: "25, 25, 25, 25", rows: "100"),
+        Preset(name: String(localized: "Main Window and Sidebar", comment: "Zone layout preset"), columns: "65, 35", rows: "100"),
+        Preset(name: String(localized: "Grid 2 × 2", comment: "Zone layout preset"), columns: "50, 50", rows: "50, 50"),
+        Preset(name: String(localized: "Grid 3 × 2", comment: "Zone layout preset"), columns: "33, 34, 33", rows: "50, 50"),
     ]
 
     static let defaultPreset = presets[0]
