@@ -25,7 +25,7 @@ struct GeneralSettingsView: View {
             LabeledContent("Gap between windows") {
                 HStack {
                     Slider(value: $windowGap, in: 0...40, step: 1)
-                    Text("\(Int(windowGap)) pt")
+                    Text(verbatim: "\(Int(windowGap)) pt")
                         .monospacedDigit()
                         .frame(width: 44, alignment: .trailing)
                 }

@@ -15,14 +15,14 @@ nonisolated enum SnapPosition: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .left: String(localized: "Left Edge")
-        case .right: String(localized: "Right Edge")
-        case .top: String(localized: "Top Edge")
-        case .bottom: String(localized: "Bottom Edge")
-        case .topLeft: String(localized: "Top Left Corner")
-        case .topRight: String(localized: "Top Right Corner")
-        case .bottomLeft: String(localized: "Bottom Left Corner")
-        case .bottomRight: String(localized: "Bottom Right Corner")
+        case .left: String(localized: "Left Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .right: String(localized: "Right Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .top: String(localized: "Top Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottom: String(localized: "Bottom Edge", comment: "Screen edge or corner where a dragged window snaps")
+        case .topLeft: String(localized: "Top Left Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .topRight: String(localized: "Top Right Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottomLeft: String(localized: "Bottom Left Corner", comment: "Screen edge or corner where a dragged window snaps")
+        case .bottomRight: String(localized: "Bottom Right Corner", comment: "Screen edge or corner where a dragged window snaps")
         }
     }
 
@@ -83,8 +83,8 @@ nonisolated enum SnapBehavior: Hashable, Sendable, RawRepresentable {
 
     var title: String {
         switch self {
-        case .none: String(localized: "Do Nothing")
-        case .thirds: String(localized: "Thirds, by Position")
+        case .none: String(localized: "Do Nothing", comment: "What happens when a window is dropped on a screen edge or corner")
+        case .thirds: String(localized: "Thirds, by Position", comment: "What happens when a window is dropped on a screen edge or corner")
         case .action(let action): action.title
         }
     }

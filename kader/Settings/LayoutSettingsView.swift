@@ -16,7 +16,7 @@ struct LayoutSettingsView: View {
             } header: {
                 Text("Layouts")
             } footer: {
-                Text("A layout remembers where the windows of all open apps are. Applying automatically happens when its display arrangement becomes active, for example when you connect a monitor.")
+                Text("A layout remembers where the windows of all open apps are. Layouts set to apply automatically are applied when their display arrangement becomes active, for example when you connect a monitor.")
                     .foregroundStyle(.secondary)
             }
 
@@ -57,11 +57,13 @@ private struct LayoutRow: View {
                         if !isEditingName { commitName() }
                     }
 
-                Button("Apply") {
+                Button {
                     layouts.apply(layout)
+                } label: {
+                    Text("Apply", comment: "Button: apply this saved layout")
                 }
                 .disabled(!layouts.canApply(layout))
-                .help(layouts.canApply(layout) ? "" : "Made for other displays")
+                .help(layouts.canApply(layout) ? Text(verbatim: "") : Text("Made for other displays"))
 
                 Button {
                     layouts.store.remove(layout.id)
@@ -69,7 +71,7 @@ private struct LayoutRow: View {
                     Image(systemName: "trash")
                 }
                 .buttonStyle(.borderless)
-                .help("Delete")
+                .help(Text("Delete", comment: "Tooltip: delete this saved layout"))
             }
 
             Text("\(layout.windows.count) windows · \(layout.screenSetup.summary)")

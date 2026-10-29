@@ -1,35 +1,29 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "": {
-      "shouldTranslate": false
-    },
-    "%lld pt": {
-      "shouldTranslate": false
-    },
-    "%lld windows · %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$#@windows@ · %2$@"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld windows · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$#@windows@ · %2$@"
           },
-          "substitutions": {
-            "windows": {
-              "argNum": 1,
-              "formatSpecifier": "lld",
-              "variations": {
-                "plural": {
-                  "one": {
-                    "stringUnit": {
-                      "state": "translated",
-                      "value": "%arg window"
+          "substitutions" : {
+            "windows" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg window"
                     }
                   },
-                  "other": {
-                    "stringUnit": {
-                      "state": "translated",
-                      "value": "%arg windows"
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg windows"
                     }
                   }
                 }
@@ -37,27 +31,27 @@
             }
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$#@windows@ · %2$@"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$#@windows@ · %2$@"
           },
-          "substitutions": {
-            "windows": {
-              "argNum": 1,
-              "formatSpecifier": "lld",
-              "variations": {
-                "plural": {
-                  "one": {
-                    "stringUnit": {
-                      "state": "translated",
-                      "value": "%arg venster"
+          "substitutions" : {
+            "windows" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg venster"
                     }
                   },
-                  "other": {
-                    "stringUnit": {
-                      "state": "translated",
-                      "value": "%arg vensters"
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg vensters"
                     }
                   }
                 }
@@ -67,829 +61,876 @@
         }
       }
     },
-    "A layout remembers where the windows of all open apps are. Applying automatically happens when its display arrangement becomes active, for example when you connect a monitor.": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Een layout onthoudt waar de vensters van alle open apps staan. Automatisch toepassen gebeurt als deze schermopstelling actief wordt, bijvoorbeeld bij het aansluiten van een monitor."
+    "A layout remembers where the windows of all open apps are. Layouts set to apply automatically are applied when their display arrangement becomes active, for example when you connect a monitor." : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een layout onthoudt waar de vensters van alle open apps staan. Automatisch toepassen gebeurt als deze schermopstelling actief wordt, bijvoorbeeld bij het aansluiten van een monitor."
           }
         }
       }
     },
-    "Accessibility access not granted": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toegankelijkheid nog niet toegestaan"
+    "Accessibility access not granted" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toegankelijkheid nog niet toegestaan"
           }
         }
       }
     },
-    "Add App…": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "App toevoegen…"
+    "Add App…" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App toevoegen…"
           }
         }
       }
     },
-    "Apply": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toepassen"
+    "Apply" : {
+      "comment" : "Button: apply this saved layout",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toepassen"
           }
         }
       }
     },
-    "Apply automatically on these displays": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Automatisch toepassen bij deze schermen"
+    "Apply automatically on these displays" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch toepassen bij deze schermen"
           }
         }
       }
     },
-    "Approve Kader in System Settings to launch it at login.": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keur Kader goed in Systeeminstellingen om bij inloggen te starten."
+    "Approve Kader in System Settings to launch it at login." : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keur Kader goed in Systeeminstellingen om bij inloggen te starten."
           }
         }
       }
     },
-    "Bottom Edge": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Onderrand"
+    "Bottom Edge" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onderrand"
           }
         }
       }
     },
-    "Bottom Half": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Onderste helft"
+    "Bottom Half" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onderste helft"
           }
         }
       }
     },
-    "Bottom Left": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linksonder"
+    "Bottom Left" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linksonder"
           }
         }
       }
     },
-    "Bottom Left Corner": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoek linksonder"
+    "Bottom Left Corner" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoek linksonder"
           }
         }
       }
     },
-    "Bottom Right": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechtsonder"
+    "Bottom Right" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtsonder"
           }
         }
       }
     },
-    "Bottom Right Corner": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoek rechtsonder"
+    "Bottom Right Corner" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoek rechtsonder"
           }
         }
       }
     },
-    "Center": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Centreren"
+    "Center" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Centreren"
           }
         }
       }
     },
-    "Center Third": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Middelste derde"
+    "Center Third" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Middelste derde"
           }
         }
       }
     },
-    "Columns (%)": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kolommen (%)"
+    "Columns (%)" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolommen (%)"
           }
         }
       }
     },
-    "Current displays": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Huidige schermen"
+    "Current displays" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidige schermen"
           }
         }
       }
     },
-    "Custom": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eigen indeling"
+    "Custom" : {
+      "comment" : "Zone preset picker: the user's own columns and rows",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigen indeling"
           }
         }
       }
     },
-    "Delete": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verwijderen"
+    "Delete" : {
+      "comment" : "Tooltip: delete this saved layout",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijderen"
           }
         }
       }
     },
-    "Do Nothing": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niets"
+    "Do Nothing" : {
+      "comment" : "What happens when a window is dropped on a screen edge or corner",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niets"
           }
         }
       }
     },
-    "Drag": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Slepen"
+    "Drag" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slepen"
           }
         }
       }
     },
-    "Edges and Corners": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Randen en hoeken"
+    "Edges and Corners" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Randen en hoeken"
           }
         }
       }
     },
-    "Exclusions": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uitzonderingen"
+    "Exclusions" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uitzonderingen"
           }
         }
       }
     },
-    "First Third": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eerste derde"
+    "First Third" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eerste derde"
           }
         }
       }
     },
-    "First Two Thirds": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eerste tweederde"
+    "First Two Thirds" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eerste tweederde"
           }
         }
       }
     },
-    "Focus in the Middle": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Focus in het midden"
+    "Focus in the Middle" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus in het midden"
           }
         }
       }
     },
-    "Four Columns": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vier kolommen"
+    "Four Columns" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vier kolommen"
           }
         }
       }
     },
-    "Gap between windows": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Marge tussen vensters"
+    "Gap between windows" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marge tussen vensters"
           }
         }
       }
     },
-    "General": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Algemeen"
+    "General" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algemeen"
           }
         }
       }
     },
-    "Grant Access…": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toestemming geven…"
+    "Grant Access…" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toestemming geven…"
           }
         }
       }
     },
-    "Grid 2 × 2": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raster 2 × 2"
+    "Grid 2 × 2" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raster 2 × 2"
           }
         }
       }
     },
-    "Grid 3 × 2": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raster 3 × 2"
+    "Grid 3 × 2" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raster 3 × 2"
           }
         }
       }
     },
-    "Ignore": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Negeer"
+    "Ignore" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer"
           }
         }
       }
     },
-    "Ignore %@": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Negeer %@"
+    "Ignore %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer %@"
           }
         }
       }
     },
-    "Ignored Apps": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Genegeerde apps"
+    "Ignored Apps" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genegeerde apps"
           }
         }
       }
     },
-    "In these apps, shortcuts go to the app itself and windows don't snap when dragged.": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In deze apps gaan de sneltoetsen naar de app zelf en snappen vensters niet bij slepen."
+    "In these apps, shortcuts go to the app itself and windows don't snap when dragged." : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In deze apps gaan de sneltoetsen naar de app zelf en snappen vensters niet bij slepen."
           }
         }
       }
     },
-    "Kader": {
-      "shouldTranslate": false
+    "Kader" : {
+      "shouldTranslate" : false
     },
-    "Kader is active": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kader is actief"
+    "Kader Settings" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kader-instellingen"
           }
         }
       }
     },
-    "Kader Settings": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kader-instellingen"
+    "Kader is active" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kader is actief"
           }
         }
       }
     },
-    "Last Third": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Laatste derde"
+    "Last Third" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatste derde"
           }
         }
       }
     },
-    "Last Two Thirds": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Laatste tweederde"
+    "Last Two Thirds" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatste tweederde"
           }
         }
       }
     },
-    "Launch at login": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opstarten bij inloggen"
+    "Launch at login" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opstarten bij inloggen"
           }
         }
       }
     },
-    "Layout %lld": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Layout %lld"
+    "Layout %lld" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layout %lld"
           }
         }
       }
     },
-    "Layouts": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Layouts"
+    "Layouts" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layouts"
           }
         }
       }
     },
-    "Left Edge": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linkerrand"
+    "Left Edge" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linkerrand"
           }
         }
       }
     },
-    "Left Half": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linkerhelft"
+    "Left Half" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linkerhelft"
           }
         }
       }
     },
-    "Made for other displays": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gemaakt voor andere schermen"
+    "Made for other displays" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemaakt voor andere schermen"
           }
         }
       }
     },
-    "Main Window and Sidebar": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoofdvenster en zijbalk"
+    "Main Window and Sidebar" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoofdvenster en zijbalk"
           }
         }
       }
     },
-    "Maximize": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maximaliseren"
+    "Maximize" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximaliseren"
           }
         }
       }
     },
-    "Name": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Naam"
+    "Name" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam"
           }
         }
       }
     },
-    "Next Display": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Volgend scherm"
+    "Next Display" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgend scherm"
           }
         }
       }
     },
-    "No ignored apps": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geen apps genegeerd"
+    "No ignored apps" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen apps genegeerd"
           }
         }
       }
     },
-    "No layouts saved yet": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog geen layouts opgeslagen"
+    "No layouts saved yet" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nog geen layouts opgeslagen"
           }
         }
       }
     },
-    "Open Login Items": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Inlogonderdelen"
+    "Open Login Items" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Inlogonderdelen"
           }
         }
       }
     },
-    "Open System Settings": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Systeeminstellingen"
+    "Open System Settings" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Systeeminstellingen"
           }
         }
       }
     },
-    "Preset": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voorbeeldindeling"
+    "Preset" : {
+      "comment" : "Label of the zone preset picker",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voorbeeldindeling"
           }
         }
       }
     },
-    "Previous Display": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vorig scherm"
+    "Previous Display" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorig scherm"
           }
         }
       }
     },
-    "Quit Kader": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop Kader"
+    "Quit Kader" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Kader"
           }
         }
       }
     },
-    "Ratios don't need to add up to 100; they're scaled to the screen. The gap from General also applies to zones.": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verhoudingen hoeven niet op te tellen tot 100; ze worden naar het scherm geschaald. De marge uit Algemeen geldt ook voor zones."
+    "Ratios don't need to add up to 100; they're scaled to the screen. The gap from General also applies to zones." : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verhoudingen hoeven niet op te tellen tot 100; ze worden naar het scherm geschaald. De marge uit Algemeen geldt ook voor zones."
           }
         }
       }
     },
-    "Restore": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herstellen"
+    "Restore" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstellen"
           }
         }
       }
     },
-    "Restore Default Shortcuts": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standaardsneltoetsen herstellen"
+    "Restore Default Shortcuts" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardsneltoetsen herstellen"
           }
         }
       }
     },
-    "Restore Defaults": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standaardwaarden herstellen"
+    "Restore Defaults" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardwaarden herstellen"
           }
         }
       }
     },
-    "Right Edge": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechterrand"
+    "Right Edge" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechterrand"
           }
         }
       }
     },
-    "Right Half": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechterhelft"
+    "Right Half" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechterhelft"
           }
         }
       }
     },
-    "Rows (%)": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rijen (%)"
+    "Rows (%)" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rijen (%)"
           }
         }
       }
     },
-    "Save Current Layout": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Huidige indeling opslaan"
+    "Save Current Layout" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidige indeling opslaan"
           }
         }
       }
     },
-    "Settings…": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Instellingen…"
+    "Settings…" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instellingen…"
           }
         }
       }
     },
-    "Shortcuts": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sneltoetsen"
+    "Shortcuts" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sneltoetsen"
           }
         }
       }
     },
-    "Show custom zones by holding Shift while dragging": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eigen zones tonen door tijdens het slepen Shift ingedrukt te houden"
+    "Show custom zones by holding Shift while dragging" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigen zones tonen door tijdens het slepen Shift ingedrukt te houden"
           }
         }
       }
     },
-    "Snap windows by dragging them to a screen edge": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vensters snappen door naar een schermrand te slepen"
+    "Snap windows by dragging them to a screen edge" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vensters snappen door naar een schermrand te slepen"
           }
         }
       }
     },
-    "Stash Left": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parkeer links"
+    "Stash Left" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parkeer links"
           }
         }
       }
     },
-    "Stash Right": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parkeer rechts"
+    "Stash Right" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parkeer rechts"
           }
         }
       }
     },
-    "Stop Ignoring": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niet meer negeren"
+    "Stop Ignoring" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet meer negeren"
           }
         }
       }
     },
-    "Thirds, by Position": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Derden, op positie"
+    "Thirds, by Position" : {
+      "comment" : "What happens when a window is dropped on a screen edge or corner",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Derden, op positie"
           }
         }
       }
     },
-    "Three Columns": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drie kolommen"
+    "Three Columns" : {
+      "comment" : "Zone layout preset",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drie kolommen"
           }
         }
       }
     },
-    "Top Edge": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bovenrand"
+    "Top Edge" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bovenrand"
           }
         }
       }
     },
-    "Top Half": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bovenste helft"
+    "Top Half" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bovenste helft"
           }
         }
       }
     },
-    "Top Left": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linksboven"
+    "Top Left" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linksboven"
           }
         }
       }
     },
-    "Top Left Corner": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoek linksboven"
+    "Top Left Corner" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoek linksboven"
           }
         }
       }
     },
-    "Top Right": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechtsboven"
+    "Top Right" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtsboven"
           }
         }
       }
     },
-    "Top Right Corner": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoek rechtsboven"
+    "Top Right Corner" : {
+      "comment" : "Screen edge or corner where a dragged window snaps",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoek rechtsboven"
           }
         }
       }
     },
-    "Unstash All Windows": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geparkeerde vensters terugzetten"
+    "Unstash All Windows" : {
+      "comment" : "Window action in the menu bar menu and shortcut settings",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geparkeerde vensters terugzetten"
           }
         }
       }
     },
-    "Use numbers separated by commas, for example 25, 50, 25.": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gebruik getallen gescheiden door komma's, bijvoorbeeld 25, 50, 25."
+    "Use numbers separated by commas, for example 25, 50, 25." : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik getallen gescheiden door komma's, bijvoorbeeld 25, 50, 25."
           }
         }
       }
     },
-    "Zones": {
-      "localizations": {
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zones"
+    "Zones" : {
+      "comment" : "Settings sidebar item",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zones"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

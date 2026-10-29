@@ -12,7 +12,7 @@ struct ZoneSettingsView: View {
             Toggle("Show custom zones by holding Shift while dragging", isOn: $zonesEnabled)
 
             Section {
-                Picker("Preset", selection: Binding(
+                Picker(selection: Binding(
                     get: { ZoneGrid.presets.first { $0.columns == columns && $0.rows == rows }?.id ?? "" },
                     set: { id in
                         guard let preset = ZoneGrid.presets.first(where: { $0.id == id }) else { return }
@@ -20,10 +20,12 @@ struct ZoneSettingsView: View {
                         rows = preset.rows
                     }
                 )) {
-                    Text("Custom").tag("")
+                    Text("Custom", comment: "Zone preset picker: the user's own columns and rows").tag("")
                     ForEach(ZoneGrid.presets) { preset in
                         Text(preset.name).tag(preset.id)
                     }
+                } label: {
+                    Text("Preset", comment: "Label of the zone preset picker")
                 }
 
                 TextField("Columns (%)", text: $columns, prompt: Text(verbatim: "25, 50, 25"))

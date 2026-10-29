@@ -62,6 +62,10 @@ struct ZoneGridTests {
         }
     }
 
+    @Test func presetIdsAreUnique() {
+        #expect(Set(ZoneGrid.presets.map(\.id)).count == ZoneGrid.presets.count)
+    }
+
     @Test func currentFallsBackToDefaultPreset() throws {
         let defaults = try #require(UserDefaults(suiteName: "nl.codebros.kader.tests.\(UUID().uuidString)"))
         let fallback = ZoneGrid(columns: ZoneGrid.defaultPreset.columns, rows: ZoneGrid.defaultPreset.rows)
