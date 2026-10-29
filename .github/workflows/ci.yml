@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Bouwen en testen
+    runs-on: macos-26
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Xcode kiezen
+        run: |
+          sudo xcode-select -s /Applications/Xcode_26.6.app
+          xcodebuild -version
+
+      # Het project is opgeslagen met Xcode 27 (objectVersion 110); de runners hebben nog geen
+      # Xcode 27. Zet het formaat alleen hier terug naar dat van Xcode 26 zodra dat lukt.
+      - name: Projectformaat voor Xcode 26
+        run: sed -i '' 's/objectVersion = 110;/objectVersion = 77;/' kader.xcodeproj/project.pbxproj
+
+      - name: Bouwen
+        run: |
+          xcodebuild build \
+            -project kader.xcodeproj \
+            -scheme kader \
+            -destination "platform=macOS" \
+            -derivedDataPath DerivedData \
+            CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= \
+            -quiet
+
+      - name: Unittests
+        run: |
+          xcodebuild test \
+            -project kader.xcodeproj \
+            -scheme kader \
+            -destination "platform=macOS" \
+            -derivedDataPath DerivedData \
+            -only-testing:kaderTests \
+            CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= \
+            -quiet
