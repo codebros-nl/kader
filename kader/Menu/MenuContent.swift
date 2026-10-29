@@ -11,13 +11,13 @@ struct MenuContent: View {
 
     var body: some View {
         if permission.isGranted {
-            Text("Kader is actief")
+            Text("Kader is active")
         } else {
-            Text("Toegankelijkheid nog niet toegestaan")
-            Button("Toestemming geven…") {
+            Text("Accessibility access not granted")
+            Button("Grant Access…") {
                 permission.request()
             }
-            Button("Open Systeeminstellingen") {
+            Button("Open System Settings") {
                 permission.openSystemSettings()
             }
         }
@@ -45,25 +45,25 @@ struct MenuContent: View {
             if !layouts.store.layouts.isEmpty {
                 Divider()
             }
-            Button("Huidige indeling opslaan") {
+            Button("Save Current Layout") {
                 layouts.saveCurrentLayout()
             }
         }
         .disabled(!permission.isGranted)
 
         if let bundleIdentifier = frontmostApp.bundleIdentifier, let name = frontmostApp.name {
-            Toggle("Negeer \(name)", isOn: Binding(
+            Toggle("Ignore \(name)", isOn: Binding(
                 get: { excludedApps.contains(bundleIdentifier) },
                 set: { excludedApps.setExcluded($0, bundleIdentifier: bundleIdentifier) }
             ))
         }
 
-        Button("Instellingen…") {
+        Button("Settings…") {
             openSettings()
         }
         .keyboardShortcut(",")
 
-        Button("Stop Kader") {
+        Button("Quit Kader") {
             NSApplication.shared.terminate(nil)
         }
         .keyboardShortcut("q")

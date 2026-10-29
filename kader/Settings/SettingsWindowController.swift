@@ -30,7 +30,7 @@ final class SettingsWindowController {
         hostingController.sceneBridgingOptions = [.title, .toolbars]
 
         let window = NSWindow(contentViewController: hostingController)
-        window.title = "Kader-instellingen"
+        window.title = String(localized: "Kader Settings")
         // Inhoud onder de titelbalk door, zodat de zijbalk tot bovenaan loopt zoals in Systeeminstellingen.
         window.styleMask = [.titled, .closable, .fullSizeContentView]
         window.toolbarStyle = .unified

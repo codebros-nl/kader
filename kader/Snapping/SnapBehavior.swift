@@ -15,14 +15,14 @@ nonisolated enum SnapPosition: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .left: "Linkerrand"
-        case .right: "Rechterrand"
-        case .top: "Bovenrand"
-        case .bottom: "Onderrand"
-        case .topLeft: "Hoek linksboven"
-        case .topRight: "Hoek rechtsboven"
-        case .bottomLeft: "Hoek linksonder"
-        case .bottomRight: "Hoek rechtsonder"
+        case .left: String(localized: "Left Edge")
+        case .right: String(localized: "Right Edge")
+        case .top: String(localized: "Top Edge")
+        case .bottom: String(localized: "Bottom Edge")
+        case .topLeft: String(localized: "Top Left Corner")
+        case .topRight: String(localized: "Top Right Corner")
+        case .bottomLeft: String(localized: "Bottom Left Corner")
+        case .bottomRight: String(localized: "Bottom Right Corner")
         }
     }
 
@@ -83,8 +83,8 @@ nonisolated enum SnapBehavior: Hashable, Sendable, RawRepresentable {
 
     var title: String {
         switch self {
-        case .none: "Niets"
-        case .thirds: "Derden, op positie"
+        case .none: String(localized: "Do Nothing")
+        case .thirds: String(localized: "Thirds, by Position")
         case .action(let action): action.title
         }
     }

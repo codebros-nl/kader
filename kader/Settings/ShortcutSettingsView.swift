@@ -13,7 +13,7 @@ struct ShortcutSettingsView: View {
             }
 
             Section {
-                Button("Standaardsneltoetsen herstellen") {
+                Button("Restore Default Shortcuts") {
                     KeyboardShortcuts.reset(WindowAction.allCases.map(\.shortcutName))
                 }
             }

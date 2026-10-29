@@ -9,7 +9,7 @@ struct ExclusionSettingsView: View {
         Form {
             Section {
                 if excludedApps.bundleIdentifiers.isEmpty {
-                    Text("Geen apps genegeerd")
+                    Text("No ignored apps")
                         .foregroundStyle(.secondary)
                 }
                 ForEach(excludedApps.bundleIdentifiers.sorted(), id: \.self) { bundleIdentifier in
@@ -23,18 +23,18 @@ struct ExclusionSettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .buttonStyle(.borderless)
-                        .help("Niet meer negeren")
+                        .help("Stop Ignoring")
                     }
                 }
             } header: {
-                Text("Genegeerde apps")
+                Text("Ignored Apps")
             } footer: {
-                Text("In deze apps gaan de sneltoetsen naar de app zelf en snappen vensters niet bij slepen.")
+                Text("In these apps, shortcuts go to the app itself and windows don't snap when dragged.")
                     .foregroundStyle(.secondary)
             }
 
             Section {
-                Button("App toevoegen…") {
+                Button("Add App…") {
                     chooseApp()
                 }
             }
@@ -47,7 +47,7 @@ struct ExclusionSettingsView: View {
         panel.allowedContentTypes = [.application]
         panel.directoryURL = URL(fileURLWithPath: "/Applications")
         panel.allowsMultipleSelection = true
-        panel.prompt = "Negeer"
+        panel.prompt = String(localized: "Ignore")
 
         guard panel.runModal() == .OK else { return }
         for url in panel.urls {

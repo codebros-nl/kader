@@ -1,3 +1,5 @@
+import Foundation
+
 /// Alle acties die Kader op een venster kan uitvoeren, los van hoe ze worden aangeroepen.
 nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
     case leftHalf
@@ -36,27 +38,27 @@ nonisolated enum WindowAction: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .leftHalf: "Linkerhelft"
-        case .rightHalf: "Rechterhelft"
-        case .topHalf: "Bovenste helft"
-        case .bottomHalf: "Onderste helft"
-        case .topLeft: "Linksboven"
-        case .topRight: "Rechtsboven"
-        case .bottomLeft: "Linksonder"
-        case .bottomRight: "Rechtsonder"
-        case .firstThird: "Eerste derde"
-        case .centerThird: "Middelste derde"
-        case .lastThird: "Laatste derde"
-        case .firstTwoThirds: "Eerste tweederde"
-        case .lastTwoThirds: "Laatste tweederde"
-        case .maximize: "Maximaliseren"
-        case .center: "Centreren"
-        case .nextScreen: "Volgend scherm"
-        case .previousScreen: "Vorig scherm"
-        case .restore: "Herstellen"
-        case .stashLeft: "Parkeer links"
-        case .stashRight: "Parkeer rechts"
-        case .unstashAll: "Geparkeerde vensters terugzetten"
+        case .leftHalf: String(localized: "Left Half")
+        case .rightHalf: String(localized: "Right Half")
+        case .topHalf: String(localized: "Top Half")
+        case .bottomHalf: String(localized: "Bottom Half")
+        case .topLeft: String(localized: "Top Left")
+        case .topRight: String(localized: "Top Right")
+        case .bottomLeft: String(localized: "Bottom Left")
+        case .bottomRight: String(localized: "Bottom Right")
+        case .firstThird: String(localized: "First Third")
+        case .centerThird: String(localized: "Center Third")
+        case .lastThird: String(localized: "Last Third")
+        case .firstTwoThirds: String(localized: "First Two Thirds")
+        case .lastTwoThirds: String(localized: "Last Two Thirds")
+        case .maximize: String(localized: "Maximize")
+        case .center: String(localized: "Center")
+        case .nextScreen: String(localized: "Next Display")
+        case .previousScreen: String(localized: "Previous Display")
+        case .restore: String(localized: "Restore")
+        case .stashLeft: String(localized: "Stash Left")
+        case .stashRight: String(localized: "Stash Right")
+        case .unstashAll: String(localized: "Unstash All Windows")
         }
     }
 
